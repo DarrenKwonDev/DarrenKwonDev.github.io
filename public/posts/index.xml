@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on darrenkwon.dev</title>
+    <link>https://darrenkwondev.github.io/posts/</link>
+    <description>Recent content in Posts on darrenkwon.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Sep 2023 16:20:16 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>post place holder</title>
+      <link>https://darrenkwondev.github.io/posts/my-first-post/</link>
+      <pubDate>Sat, 16 Sep 2023 16:20:16 +0900</pubDate>
+      
+      <guid>https://darrenkwondev.github.io/posts/my-first-post/</guid>
+      <description>Introduction This is bold text, and this is emphasized text.
+Visit the Hugo website!
+second intro wow.
+this is code block
+19package main 20 21import &amp;#34;fmt&amp;#34; 22 23func main() { 24	fmt.Println(&amp;#34;Hello, 世界&amp;#34;) 25} 26// ... code math katex $$ \begin{align} \sqrt{37} &amp;amp; = \sqrt{\frac{73^2-1}{12^2}} \\ &amp;amp; = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\ &amp;amp; = \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \\ &amp;amp; \approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right) \end{align} $$
+img all image lazy loaded
+comment(footnote) Here&amp;rsquo;s a sentence with a footnote.</description>
+    </item>
+    
+  </channel>
+</rss>
