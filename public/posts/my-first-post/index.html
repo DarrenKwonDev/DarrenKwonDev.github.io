@@ -48,7 +48,7 @@
     <link href="/fonts/iosevka-extended.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
     
-    <link rel="stylesheet" type="text/css" href="/style.min.97295801796c9c4f32f81fda7d7f6367296f57b7a8f4d0b251140fb0dc88ab42.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/style.min.96e89ef676e7b5a1d5044e77c9bb62bfe775064f2f2d57f6c0c269782e494190.css" media="all">
   </head>
 
   <body>
@@ -96,11 +96,13 @@
   <ul>
     <li><a href="#introduction">Introduction</a>
       <ul>
-        <li><a href="#second-intro">second intro</a></li>
+        <li><a href="#html-tags-set-renderer-first">html tags (set renderer first!)</a></li>
+        <li><a href="#code-block">code block</a></li>
         <li><a href="#math-katex">math katex</a></li>
         <li><a href="#img">img</a></li>
         <li><a href="#commentfootnote">comment(footnote)</a></li>
         <li><a href="#box">box</a></li>
+        <li><a href="#collapse">collapse</a></li>
       </ul>
     </li>
   </ul>
@@ -113,9 +115,19 @@
 <p>This is <strong>bold</strong> text, and this is <em>emphasized</em> text.</p>
 <p>Visit the <a href="https://gohugo.io"  target="_blank" rel="noreferrer nofollow">Hugo</a>
  website!</p>
-<h3 id="second-intro">second intro</h3>
+<h3 id="html-tags-set-renderer-first">html tags (set renderer first!)</h3>
+<div>
+	<mark>and this is mark tag!</mark>
+	<u>this is u tag!</u>
+</div>
+<div>aksjfd;lajs;fjalskjflk;asdjasfjhaksdhfjaksdhf</div>
+<h3 id="code-block">code block</h3>
 <p>wow.</p>
-<p>this is code block</p>
+<p>this is code block.<br>
+<a href="https://gohugo.io/content-management/syntax-highlighting/"  target="_blank" rel="noreferrer nofollow">highlight</a>
+<br>
+<a href="https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences"  target="_blank" rel="noreferrer nofollow">highlighting-in-code-fences</a>
+</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 </span></span><span style="display:flex; background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
@@ -136,16 +148,28 @@ $$</p>
 <h3 id="img">img</h3>
 <p>all image lazy loaded</p>
 <p><p class="imgp">
-  <img loading="lazy" src="./test.png" alt="image"  />
+  <img loading="lazy" src="./test.png" alt="what"  />
+</p>
+
+<p class="imgp">
+  <img loading="lazy" src="./output.jpg" alt="oh"  />
 </p>
 </p>
 <h3 id="commentfootnote">comment(footnote)</h3>
 <p>Here&rsquo;s a sentence with a footnote.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <h3 id="box">box</h3>
-<p>{{ &lt; box info &gt;}}<br>
+<p>check this : <a href="https://gohugo.io/content-management/syntax-highlighting/#highlight-hugogo-template-code"  target="_blank" rel="noreferrer nofollow">https://gohugo.io/content-management/syntax-highlighting/#highlight-hugogo-template-code</a>
+</p>
+<p>{{ &lt; box info &gt;}}
 <strong>This is a bold line</strong></p>
-<p>Hello there, and have a nice day<br>
+<p>Hello there, and have a nice day
 {{ &lt; /box &gt;}}</p>
+<img src="./test.png" />
+<h3 id="collapse">collapse</h3>
+<details>
+  <summary>클릭하여 내용 보기/감추기</summary>
+<p>이곳에 숨겨진 내용을 작성하세요.</p>
+</details>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -298,7 +322,7 @@ window.store = {
     "https:\/\/darrenkwondev.github.io\/posts\/my-first-post\/": {
         "title": "post place holder",
         "tags": ["tag1","tag2",],
-        "content": "Introduction This is bold text, and this is emphasized text.\nVisit the Hugo website!\nsecond intro wow.\nthis is code block\n19package main 20 21import \u0026#34;fmt\u0026#34; 22 23func main() { 24\tfmt.Println(\u0026#34;Hello, 世界\u0026#34;) 25} 26// ... code math katex $$ \\begin{align} \\sqrt{37} \u0026amp; = \\sqrt{\\frac{73^2-1}{12^2}} \\\\ \u0026amp; = \\sqrt{\\frac{73^2}{12^2}\\cdot\\frac{73^2-1}{73^2}} \\\\ \u0026amp; = \\frac{73}{12}\\sqrt{1 - \\frac{1}{73^2}} \\\\ \u0026amp; \\approx \\frac{73}{12}\\left(1 - \\frac{1}{2\\cdot73^2}\\right) \\end{align} $$\nimg all image lazy loaded\ncomment(footnote) Here\u0026rsquo;s a sentence with a footnote.1\nbox {{ \u0026lt; box info \u0026gt;}}\nThis is a bold line\nHello there, and have a nice day\n{{ \u0026lt; /box \u0026gt;}}\nThis is unnamed footnote.\u0026#160;\u0026#x21a9;\u0026#xfe0e;\n", 
+        "content": "Introduction This is bold text, and this is emphasized text.\nVisit the Hugo website!\nhtml tags (set renderer first!) and this is mark tag! this is u tag! aksjfd;lajs;fjalskjflk;asdjasfjhaksdhfjaksdhf code block wow.\nthis is code block.\nhighlight highlighting-in-code-fences 19package main 20 21import \u0026#34;fmt\u0026#34; 22 23func main() { 24\tfmt.Println(\u0026#34;Hello, 世界\u0026#34;) 25} 26// ... code math katex $$ \\begin{align} \\sqrt{37} \u0026amp; = \\sqrt{\\frac{73^2-1}{12^2}} \\\\ \u0026amp; = \\sqrt{\\frac{73^2}{12^2}\\cdot\\frac{73^2-1}{73^2}} \\\\ \u0026amp; = \\frac{73}{12}\\sqrt{1 - \\frac{1}{73^2}} \\\\ \u0026amp; \\approx \\frac{73}{12}\\left(1 - \\frac{1}{2\\cdot73^2}\\right) \\end{align} $$\nimg all image lazy loaded\ncomment(footnote) Here\u0026rsquo;s a sentence with a footnote.1\nbox check this : https://gohugo.io/content-management/syntax-highlighting/#highlight-hugogo-template-code {{ \u0026lt; box info \u0026gt;}} This is a bold line\nHello there, and have a nice day {{ \u0026lt; /box \u0026gt;}}\ncollapse 클릭하여 내용 보기/감추기 이곳에 숨겨진 내용을 작성하세요.\nThis is unnamed footnote.\u0026#160;\u0026#x21a9;\u0026#xfe0e;\n", 
         "url": "https:\/\/darrenkwondev.github.io\/posts\/my-first-post\/"
     },
     

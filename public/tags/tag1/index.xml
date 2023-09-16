@@ -15,11 +15,9 @@
       <guid>https://darrenkwondev.github.io/posts/my-first-post/</guid>
       <description>Introduction This is bold text, and this is emphasized text.
 Visit the Hugo website!
-second intro wow.
-this is code block
-19package main 20 21import &amp;#34;fmt&amp;#34; 22 23func main() { 24	fmt.Println(&amp;#34;Hello, 世界&amp;#34;) 25} 26// ... code math katex $$ \begin{align} \sqrt{37} &amp;amp; = \sqrt{\frac{73^2-1}{12^2}} \\ &amp;amp; = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\ &amp;amp; = \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \\ &amp;amp; \approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right) \end{align} $$
-img all image lazy loaded
-comment(footnote) Here&amp;rsquo;s a sentence with a footnote.</description>
+html tags (set renderer first!) and this is mark tag! this is u tag! aksjfd;lajs;fjalskjflk;asdjasfjhaksdhfjaksdhf code block wow.
+this is code block.
+highlight highlighting-in-code-fences 19package main 20 21import &amp;#34;fmt&amp;#34; 22 23func main() { 24	fmt.Println(&amp;#34;Hello, 世界&amp;#34;) 25} 26// ... code math katex $$ \begin{align} \sqrt{37} &amp;amp; = \sqrt{\frac{73^2-1}{12^2}} \\ &amp;amp; = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\ &amp;amp; = \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \\ &amp;amp; \approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right) \end{align} $$</description>
     </item>
     
   </channel>
