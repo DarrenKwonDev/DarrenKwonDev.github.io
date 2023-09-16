@@ -1,5 +1,5 @@
 +++
-title = 'post place holder'
+title = 'post placeholder and examples'
 date = 2023-09-16T16:20:16+09:00
 math = true
 toc = true
@@ -54,10 +54,35 @@ $$
 
 ### img
 
-all image lazy loaded
+all image lazy loaded.
+[page scoped img](https://gohugo.io/content-management/page-resources/)
 
 ![what](./test.png)
-![oh](./output.jpg)
+
+### file tress
+
+```
+.
+├── 01_helloworld
+│   ├── hello_world.c
+│   └── 함수_선언_정의_차이점.c
+├── 02_자료형
+│   ├── bool_data_type.c
+│   ├── enum_data_type.c
+│   ├── float_data_type.c
+│   └── int_data_type.c
+├── 03_변수_연산
+│   └── declare_var.c
+├── README.md
+└── a.out
+```
+
+### table
+
+| wow | col1 | col2 | col3 | col 4 |
+| --- | ---- | ---- | ---- | ----- |
+|     | 1    | 2    | 3    | 4     |
+|     | 11   | 22   | 33   | 44    |
 
 ### comment(footnote)
 
@@ -69,13 +94,31 @@ Here's a sentence with a footnote.[^1]
 
 check this : https://gohugo.io/content-management/syntax-highlighting/#highlight-hugogo-template-code
 
-{{ < box info >}}
-**This is a bold line**
+info, tip, warning, important
+
+tip
+{{< box tip >}}
 
 Hello there, and have a nice day
-{{ < /box >}}
+{{< /box >}}
 
-<img src="./test.png" />
+info
+{{< box info >}}
+
+Hello there, and have a nice day
+{{< /box >}}
+
+warning
+{{< box warning >}}
+
+Hello there, and have a nice day
+{{< /box >}}
+
+important
+{{< box important >}}
+
+Hello there, and have a nice day
+{{< /box >}}
 
 ### collapse
 

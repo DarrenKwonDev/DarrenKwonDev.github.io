@@ -1,6 +1,6 @@
 baseURL: "https://darrenkwondev.github.io/"
 languageCode: "en-us"
-title: "darrenkwon.dev"
+title: "darrenkwon.dev blog"
 theme: "hugo-dead-simple"
 menu:
     main:
@@ -10,17 +10,18 @@ menu:
         - name: "Tags"
           url: "tags/"
           weight: 2
-        # - name: "Contact"
-        #   url: "contact/"
-        #   weight: 3
+        - name: "About"
+          url: "about/"
+          weight: 3
 
+# https://gohugo.io/getting-started/configuration-markup/
 markup:
     # highlight:
     #     codeFences: true
     #     style: bw
     #     lineNumbersInTable: false
     #     noClasses: false
-    goldmark: # https://github.com/yuin/goldmark
+    goldmark:
         renderer:
             unsafe: true # for html tags in markdown
 
