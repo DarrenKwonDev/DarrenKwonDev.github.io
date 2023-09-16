@@ -8,6 +8,8 @@ git init
 git submodule add $theme_git_path themes/$theme_name
 echo "theme = '$theme_name'" >> hugo.toml
 hugo server
+
+hugo hugo new content posts/$post_name.md
 ```
 
 [configuration](https://gohugo.io/getting-started/configuration/)  
