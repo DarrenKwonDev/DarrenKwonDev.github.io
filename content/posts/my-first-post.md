@@ -15,11 +15,21 @@ This is **bold** text, and this is _emphasized_ text.
 
 Visit the [Hugo](https://gohugo.io) website!
 
-### second intro
+### html tags (set renderer first!)
+
+<div>
+	<mark>and this is mark tag!</mark>
+	<u>this is u tag!</u>
+</div>
+<div>aksjfd;lajs;fjalskjflk;asdjasfjhaksdhfjaksdhf</div>
+
+### code block
 
 wow.
 
-this is code block
+this is code block.  
+[highlight](https://gohugo.io/content-management/syntax-highlighting/)  
+[highlighting-in-code-fences](https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences)
 
 ```go {linenos=inline,hl_lines=[2, "6-9"],linenostart=19}
 package main
@@ -47,7 +57,8 @@ $$
 
 all image lazy loaded
 
-![image](./test.png)
+![what](./test.png)
+![oh](./output.jpg)
 
 ### comment(footnote)
 
@@ -57,8 +68,20 @@ Here's a sentence with a footnote.[^1]
 
 ### box
 
-{{ < box info >}}  
+check this : https://gohugo.io/content-management/syntax-highlighting/#highlight-hugogo-template-code
+
+{{ < box info >}}
 **This is a bold line**
 
-Hello there, and have a nice day  
+Hello there, and have a nice day
 {{ < /box >}}
+
+<img src="./test.png" />
+
+### collapse
+
+<details>
+  <summary>클릭하여 내용 보기/감추기</summary>
+  
+  이곳에 숨겨진 내용을 작성하세요.
+</details>

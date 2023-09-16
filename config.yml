@@ -13,4 +13,21 @@ menu:
         # - name: "Contact"
         #   url: "contact/"
         #   weight: 3
-params:
+
+markup:
+    # highlight:
+    #     codeFences: true
+    #     style: bw
+    #     lineNumbersInTable: false
+    #     noClasses: false
+    goldmark: # https://github.com/yuin/goldmark
+        renderer:
+            unsafe: true # for html tags in markdown
+
+outputs:
+    home:
+        - html
+        - rss
+        - json
+    page:
+        - html

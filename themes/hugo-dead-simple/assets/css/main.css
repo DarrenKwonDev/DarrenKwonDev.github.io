@@ -160,6 +160,13 @@ mark {
     padding: 0 2px 0 2px;
 }
 
+u {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+    text-underline-offset: 4px; /* g, y와 같이 아래로 뻗은 영문에 의해 underline이 가려지지 않게 offset 처리 */
+}
+
 ul {
     padding-left: 2rem;
 }
