@@ -1,7 +1,15 @@
+# site-wide configuration
+# https://gohugo.io/variables/site/
 baseURL: "https://darrenkwondev.github.io/"
 languageCode: "en-us"
+lang: "en"
 title: "darrenkwon.dev blog"
 theme: "hugo-dead-simple"
+
+params:
+    author: Darren Kwon
+    Subtitle: software, startup, and life
+
 menu:
     main:
         - name: "Home"
