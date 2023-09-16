@@ -8,6 +8,8 @@ draft = false
 tags = ["tag1", "tag2"]
 +++
 
+![thumbnail](./og.svg)
+
 ## Introduction
 
 This is **bold** text, and this is _emphasized_ text.
