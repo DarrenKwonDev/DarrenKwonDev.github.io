@@ -79,6 +79,16 @@ h1 {
     margin-top: 0;
 }
 
+.site-title {
+    margin-top: 4px;
+}
+
+.site-title a {
+    color: var(--text);
+    all: unset;
+    cursor: pointer;
+}
+
 h2 {
     margin-bottom: 0.5em;
     margin-top: 1.3em;
