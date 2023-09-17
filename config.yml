@@ -9,6 +9,8 @@ theme: "hugo-dead-simple"
 params:
     author: Darren Kwon
     Subtitle: software, startup, and life
+    roseIcon: false
+    description: "software, startup, and life"
 
 menu:
     main:
