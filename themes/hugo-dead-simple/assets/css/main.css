@@ -86,7 +86,12 @@ h1 {
 .site-title a {
     color: var(--text);
     all: unset;
+    text-decoration: none;
     cursor: pointer;
+}
+
+.site-title a:visited {
+    color: var(--text);
 }
 
 h2 {
