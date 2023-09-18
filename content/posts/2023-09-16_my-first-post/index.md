@@ -1,5 +1,6 @@
 +++
-title = 'post placeholder and examples'
+title = 'post placeholder and examples. og:title'
+description = "og:description"
 date = 2023-09-16T16:20:16+09:00
 math = true
 toc = true
