@@ -149,115 +149,84 @@
 <footer>
 
 <script defer>
-  document.addEventListener("keydown", function (e) {
-    if (document.activeElement.isContentEditable) {
-      return false;
-    }
-    if (document.activeElement.tagName == "INPUT") {
-      return false;
-    }
-    if (e.altKey || e.ctrlKey || e.shiftKey) {
-      return false;
-    }
-    var key = e.key;
-    if (key === "h") {
-      e.preventDefault();
-      e.stopPropagation();
-      window.location.href = "/";
-    } else if (key === "t") {
-      e.preventDefault();
-      e.stopPropagation();
-      window.location.href = "/tags";
-    } else if (key === "i") {
-      e.preventDefault();
-      e.stopPropagation();
-      const inputs = document.querySelectorAll("input");
-      for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].offsetParent !== null) {
-          inputs[i].selectionStart = inputs[i].selectionEnd =
-            inputs[i].value.length;
-          inputs[i].focus();
-          break;
+    document.addEventListener("keydown", function (e) {
+        if (document.activeElement.isContentEditable) {
+            return false;
         }
-      }
-    }
-    return false;
-  });
+        if (document.activeElement.tagName == "INPUT") {
+            return false;
+        }
+        if (e.altKey || e.ctrlKey || e.shiftKey) {
+            return false;
+        }
+        var key = e.key;
+        if (key === "h") {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = "/";
+        } else if (key === "t") {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = "/tags";
+        } else if (key === "i") {
+            e.preventDefault();
+            e.stopPropagation();
+            const inputs = document.querySelectorAll("input");
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].offsetParent !== null) {
+                    inputs[i].selectionStart = inputs[i].selectionEnd =
+                        inputs[i].value.length;
+                    inputs[i].focus();
+                    break;
+                }
+            }
+        }
+        return false;
+    });
 </script>
 
 
 <script defer>
-  function scrollHandler() {
-    const anchors = Array.from(document.querySelectorAll("body h2, body h3"));
-
-    window.addEventListener("scroll", function () {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      
-      for (var i = 0; i < anchors.length; i++) {
-        var anchorId = anchors[i].getAttribute("id");
-        var link = document.querySelector(
-          'nav ul li a[href="#' + anchorId + '"]'
+    function scrollHandler() {
+        const anchors = Array.from(
+            document.querySelectorAll("body h2, body h3")
         );
-        if (link) {
-          link.classList.remove("active-toc");
-        }
-      }
 
-      
-      for (var i = anchors.length - 1; i >= 0; i--) {
-        var offsetTop = anchors[i].offsetTop;
-        if (scrollTop > offsetTop - 75) {
-          var anchorId = anchors[i].getAttribute("id");
-          var link = document.querySelector(
-            'nav ul li a[href="#' + anchorId + '"]'
-          );
-          if (link) {
-            link.classList.add("active-toc");
-            break;
-          }
-        }
-      }
-    });
-  }
-  setTimeout(scrollHandler, 100)
-</script>
+        window.addEventListener("scroll", function () {
+            var scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop;
 
-<script defer>
-  function addCopyButtonToCodeBlocks() {
-    
-    const codeBlocks = document.querySelectorAll('code[class^="language-"]');
+            
+            for (var i = 0; i < anchors.length; i++) {
+                var anchorId = anchors[i].getAttribute("id");
+                var link = document.querySelector(
+                    'nav ul li a[href="#' + anchorId + '"]'
+                );
+                if (link) {
+                    link.classList.remove("active-toc");
+                }
+            }
 
-    codeBlocks.forEach((codeBlock) => {
-      const copyButton = document.createElement("button");
-      copyButton.classList.add("copy-code-button");
-      copyButton.innerHTML = "copy";
-
-      
-      copyButton.addEventListener("click", () => {
-        
-        const elements = codeBlock.querySelectorAll(".cl");
-        let codeToCopy = "";
-        elements.forEach((element) => {
-          codeToCopy += element.innerText;
+            
+            for (var i = anchors.length - 1; i >= 0; i--) {
+                var offsetTop = anchors[i].offsetTop;
+                if (scrollTop > offsetTop - 75) {
+                    var anchorId = anchors[i].getAttribute("id");
+                    var link = document.querySelector(
+                        'nav ul li a[href="#' + anchorId + '"]'
+                    );
+                    if (link) {
+                        link.classList.add("active-toc");
+                        break;
+                    }
+                }
+            }
         });
-        navigator.clipboard.writeText(codeToCopy);
-
-        
-        copyButton.innerHTML = "copied!";
-        setTimeout(() => {
-          copyButton.innerHTML = "copy";
-        }, 1500);
-      });
-
-      
-      codeBlock.parentNode.before(copyButton);
-    });
-  }
-  setTimeout(function () {
-    addCopyButtonToCodeBlocks();
-  }, 100);
+    }
+    setTimeout(scrollHandler, 100);
 </script>
+
+
 
 <script>
 window.store = {
