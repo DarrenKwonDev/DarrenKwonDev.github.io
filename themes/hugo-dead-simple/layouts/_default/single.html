@@ -25,8 +25,9 @@
 <br />
 <hr />
 {{ with .PrevInSection }} Next: <a href="{{ .Permalink }}">{{ .Title }}</a>
-{{ end }} {{ end }} {{ if .Params.math }} {{ partial "math.html" . }} {{ end }}
-{{ partial "footer.html" . }}
+{{ end }} {{ end }}
+<!-- math -->
+{{ if .Params.math }} {{ partial "math.html" . }} {{ end }}
 
 <!-- mermaid -->
 {{ if .Page.Store.Get "hasMermaid" }}
@@ -35,3 +36,6 @@
     mermaid.initialize({ startOnLoad: true });
 </script>
 {{ end }}
+
+<!-- footer -->
+{{ partial "footer.html" . }}
