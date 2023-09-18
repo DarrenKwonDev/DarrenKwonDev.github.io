@@ -1,41 +1,37 @@
-{{ partial "header.html" . }}
-
-
-{{ if not .Params.notitle }}
+{{ partial "header.html" . }} {{ if not .Params.notitle }}
 <div id="single-header">
-  <h1>
-    {{ .Title | markdownify }}
-  </h1>
-  <div id="single-meta">
-    {{ if .Params.subtitle }}
+    <h1>{{ .Title | markdownify }}</h1>
+    <div id="single-meta">
+        {{ if .Params.subtitle }}
         <p id="subtitle">{{ .Params.subtitle }}</p>
-    {{ end }}
-    {{ if .Params.date }}
-        <span class="datesub">{{ .Date.Format "Jan 2, 2006" }}{{ if .GitInfo }} &nbsp;│&nbsp; m. {{
-            .Lastmod.Format "Jan 2, 2006" }} by {{ .GitInfo.AuthorName }}{{ end }}</span>
-    {{ end }} {{ partial "tags.html" .}}
-  </div>
+        {{ end }} {{ if .Params.date }}
+        <span class="datesub"
+            >{{ .Date.Format "Jan 2, 2006" }}{{ if .GitInfo }} &nbsp;│&nbsp; m.
+            {{ .Lastmod.Format "Jan 2, 2006" }} by {{ .GitInfo.AuthorName }}{{
+            end }}</span
+        >
+        {{ end }} {{ partial "tags.html" .}}
+    </div>
 </div>
-{{ end }}
-
-{{ if .Params.toc }}
-<aside class="hidden lg:block toc " id="tableOfContentContainer">
-  {{ .TableOfContents }}
+{{ end }} {{ if .Params.toc }}
+<aside class="hidden lg:block toc" id="tableOfContentContainer">
+    {{ .TableOfContents }}
 </aside>
 {{ end }}
-
 
 <main>{{ .Content }}</main>
 
 {{ if .Params.Next }}
-    <br>
-    <hr>
-    {{ with .PrevInSection }}
-      Next: <a href="{{ .Permalink }}">{{ .Title }}</a>
-    {{ end }}
-{{ end }}
-
-{{ if .Params.math }}
-    {{ partial "math.html" . }}
-{{ end }}
+<br />
+<hr />
+{{ with .PrevInSection }} Next: <a href="{{ .Permalink }}">{{ .Title }}</a>
+{{ end }} {{ end }} {{ if .Params.math }} {{ partial "math.html" . }} {{ end }}
 {{ partial "footer.html" . }}
+
+<!-- mermaid -->
+{{ if .Page.Store.Get "hasMermaid" }}
+<script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+</script>
+{{ end }}
