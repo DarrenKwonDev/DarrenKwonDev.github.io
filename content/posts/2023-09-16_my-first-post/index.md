@@ -6,8 +6,15 @@ math = true
 toc = true
 bold = true
 draft = false
-tags = ["tag1", "tag2"]
+tags = ["tag1", "tag2", "english"]
 +++
+
+{{< box tip >}}
+
+tips!
+
+this blog post has [korean version](https://gohugo.io)
+{{< /box >}}
 
 ## Introduction
 

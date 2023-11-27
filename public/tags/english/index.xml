@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tag2 on darrenkwon.dev blog</title>
-    <link>https://darrenkwondev.github.io/tags/tag2/</link>
-    <description>Recent content in tag2 on darrenkwon.dev blog</description>
+    <title>english on darrenkwon.dev blog</title>
+    <link>https://darrenkwondev.github.io/tags/english/</link>
+    <description>Recent content in english on darrenkwon.dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Sep 2023 16:20:16 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Sep 2023 16:20:16 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/english/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>post placeholder and examples. og:title</title>
       <link>https://darrenkwondev.github.io/posts/2023-09-16_my-first-post/</link>
