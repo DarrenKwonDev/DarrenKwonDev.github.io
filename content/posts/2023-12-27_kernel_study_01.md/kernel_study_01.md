@@ -5,7 +5,7 @@ math = true
 toc = true
 bold = true
 draft = false
-tags = ["linux", "kernel", "system engineering", "korean"]
+tags = ["linux", "system engineering", "korean"]
 +++
 
 {{< box info >}}
@@ -475,7 +475,7 @@ sdb         8:16   0   1TB  0 disk
 
 위 예시에서 "sda"와 "sdb" 디스크는 RAID1으로 구성되었습니다. "md0"은 RAID 레이드 장치를 나타내며 "/dev/md0"는 RAID로 구성된 볼륨을 나타냅니다. RAID 구성은 여러 디스크의 복제 또는 데이터 분산을 허용하므로 "md0"의 하위 항목으로 "sda3"와 "sdb3"이 나타납니다.
 
-## network (네트워크 카드)
+## network
 
 ### 네트워크 카드(NIC) 확인하기
 
@@ -537,8 +537,8 @@ Advertised link modes는 네크워크 상 다른 장치와 연결 할 때 사용
 {{< box tip >}}
 Half Duplex and Full Duplex
 
-Half Duplex는 데이터가 한 번에 한 방향으로만 전송될 수 있음을 의미합니다.  
-Full Duplex는 데이터가 동시에 양방향으로 전송될 수 있음을 의미합니다.  
+Half Duplex -> 데이터가 한 번에 한 방향으로만 전송됨.
+Full Duplex -<> 데이터가 동시에 양방향으로 전송될 수 있음.
 {{< /box >}}
 
 -   10baseT/Half 10baseT/Full: 10 Mbps 속도의 Half Duplex와 Full Duplex 연결을 지원합니다.
