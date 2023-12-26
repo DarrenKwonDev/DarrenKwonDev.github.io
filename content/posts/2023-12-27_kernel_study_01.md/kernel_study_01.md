@@ -5,7 +5,7 @@ math = true
 toc = true
 bold = true
 draft = false
-tags = ["linux", "system engineering", "korean"]
+tags = ["linux", "system_engineering", "korean", "kernel"]
 +++
 
 {{< box info >}}
