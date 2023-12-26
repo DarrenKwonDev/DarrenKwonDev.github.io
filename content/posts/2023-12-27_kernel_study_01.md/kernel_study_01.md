@@ -321,7 +321,8 @@ Vulnerabilities:
 메모리 정보를 출력하는 명령어입니다. 메모리의 총 용량, 사용량, 사용 가능한 용량 등을 확인할 수 있습니다.
 
 ```
-# cat /proc/meminfo
+# cat /proc/meminfo | head -n 10
+# 아주 많은 정보가 출력되기 때문에 앞의 10줄만 출력해보았습니다.
 
 MemTotal:        4004640 kB
 MemFree:         1628216 kB
@@ -357,8 +358,8 @@ total = used + free + buff/cached
         -   예를 들면 동영상 파일이 메모리에 올라와 있다면 buffer는 작겠지만 cache는 클 것이라 예측할 수 있다.
 -   shared : Memory used (mostly) by tmpfs (Shmem in /proc/meminfo)
 -   available : Estimation of how much memory is available for starting new applications, without swapping.
-    -   어떤 프로세스가 만들어진다면 메모리를 사용할 때 최대 어디까지 사용할 수 있음?
-    -   보통 buff/cache + free 정도임.
+    -   어떤 프로세스가 만들어진다면 메모리를 사용할 때 최대 어디까지 사용할 수 있는지를 의미합니다.
+    -   보통 buff/cache + free 정도로 계산됩니다.
 
 ### dmidecode -t memory
 
