@@ -1,6 +1,6 @@
 +++
-title = 'kernel study 02: 프로세스 정보 확인하기'
-date = 2023-12-28T17:12:36+09:00
+title = 'kernel study 02: 프로세스 관련 정보'
+date = 2023-12-27T07:23:52+09:00
 math = true
 toc = true
 bold = true
