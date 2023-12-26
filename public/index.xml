@@ -13,7 +13,11 @@
       <pubDate>Wed, 27 Dec 2023 00:02:35 +0900</pubDate>
       
       <guid>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/kernel_study_01/</guid>
-      <description>커널 정보 확인 cpu mem disk network </description>
+      <description>based on Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-91-generic aarch64) VM
+커널 정보 확인 uname (UNIX name) 커널 이름, 호스트 이름, 커널 버전, 커널 릴리즈, 운영 체제, 하드웨어 이름(아키텍처) 등 시스템 정보를 출력하는 도구
+# uname -a Linux drkup 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 14 13:29:11 UTC 2023 aarch64 aarch64 aarch64 GNU/Linux 5.15.0-91-generic 커널을 사용 중임을 확인할 수 있다.
+dmesg (display message) 커널의 메시지 버퍼의 내용을 출력하는 도구.
+kernel이 부팅되면서 출력했된 내용을 살펴보겠습니다.</description>
     </item>
     
     <item>
