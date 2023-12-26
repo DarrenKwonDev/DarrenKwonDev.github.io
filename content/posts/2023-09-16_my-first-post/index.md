@@ -5,7 +5,7 @@ date = 2023-09-16T16:20:16+09:00
 math = true
 toc = true
 bold = true
-draft = false
+draft = true
 tags = ["tag1", "tag2", "english"]
 +++
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on darrenkwon.dev blog</title>
-    <link>https://darrenkwondev.github.io/posts/</link>
-    <description>Recent content in Posts on darrenkwon.dev blog</description>
+    <title>korean on darrenkwon.dev blog</title>
+    <link>https://darrenkwondev.github.io/tags/korean/</link>
+    <description>Recent content in korean on darrenkwon.dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Dec 2023 00:02:35 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Dec 2023 00:02:35 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/korean/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>kernel study 01: 시스템 구성 정보 확인하기</title>
       <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/kernel_study_01/</link>

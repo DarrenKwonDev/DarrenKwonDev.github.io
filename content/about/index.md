@@ -2,14 +2,16 @@
 title = 'About & Contact'
 +++
 
-I'm a self-taught programmer with two entrepreneurship experiences.  
-Study and develop to make a business impact.
+I'm a programmer with two entrepreneurship experiences.  
+Study and develop tech to make a business impact.  
+But also focus on low-level details to avoid pitfalls of leaky abstraction.
 
 ## resume
 
 english resume (not yet! sorry!)  
-[korean resume](https://github.com/DarrenKwonDev/resume/blob/master/%EA%B6%8C%EC%88%98%ED%9B%88.korean.resume.pdf)
+[korean resume](https://github.com/DarrenKwonDev/resume/blob/master/cv.pdf)
 
 ## social
 
-[linkedin](https://www.linkedin.com/in/suhun-kwon/) | [medium](https://medium.com/@darrenkwondev46)
+-   [github](https://github.com/DarrenKwonDev)
+-   [linkedin](https://www.linkedin.com/in/suhun-kwon/)

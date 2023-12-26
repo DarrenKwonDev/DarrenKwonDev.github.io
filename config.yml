@@ -7,10 +7,10 @@ title: "darrenkwon.dev blog"
 theme: "hugo-dead-simple"
 
 params:
-    author: Darren Kwon
-    Subtitle: software, startup, and life
+    author: drkdev
+    Subtitle: software
     roseIcon: false
-    description: "software, startup, and life"
+    description: "software development blog"
 
 menu:
     main:
