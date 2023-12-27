@@ -5,7 +5,7 @@ math = true
 toc = true
 bold = true
 draft = false
-tags = ["network", "korean", "cloud", "system_engineering"]
+tags = ["network", "korean", "cloud", "system_engineering", "CIDR", "NAT"]
 +++
 
 {{< box info >}}
@@ -18,7 +18,7 @@ tags = ["network", "korean", "cloud", "system_engineering"]
 
 {{< /box >}}
 
-## private ip와 CIDR
+## private network
 
 보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 ISP가 하나의 public ip(공인 ip)를 할당하며 해당 router는 내부 private ip를 public ip로 변환하는 일종의 문(gateway) 역할을 수행한다.
 
