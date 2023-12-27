@@ -16,10 +16,10 @@ top -hv|-bcEeHiOSs1 -d secs -n max -u|U user -p pids -o field -w [cols]
 
 ![test](./top.png)
 
-단순한 사용 방법은 [리눅스 top 정리 및 설명](https://zzsza.github.io/development/2018/07/18/linux-top/)을 참고하는 것이 좋습니다.  
+커맨드 사용 방법은 [리눅스 top 정리 및 설명](https://zzsza.github.io/development/2018/07/18/linux-top/)을 참고하는 것이 좋습니다.  
 또한, 표현된 각 column 외에도 다른 metric은 man 페이지를 통해 확인하실 수 있습니다.
 
-여기서는 top을 통해 살펴볼 수 있는 세부적인 여러 process 관련 정보들을 살펴보도록 하겠습니다.
+여기서는 top을 통해 살펴볼 수 있는 세부적인 여러 process 관련 정보 중 VIRT, RES, SHR, S, PR, NI들을 살펴보도록 하겠습니다.
 
 {{< box info >}}
 task
@@ -208,13 +208,11 @@ NI는 PR의 조정값으로, 우선순위는 PR + NI로 결정된다.
 process A가 10, process B가 15의 우선순위를 갖게 된다.
 따라서 process A가 먼저 cpu를 할당받게 된다.
 
-**renice**
-
-Alters the scheduling priority/niceness of one or more running processes.  
-Niceness values range from -20 (most favorable to the process) to 19 (least favorable to the process).  
-More information: <https://manned.org/renice>.
+nice는 **renice**로 조정될 수 있습니다.
 
 ```bash
+# Niceness values range from -20 (most favorable to the process) to 19 (least favorable to the process).
+
 # Change priority of a running process:
 renice -n niceness_value -p pid
 
