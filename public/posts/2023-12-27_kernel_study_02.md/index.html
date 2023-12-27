@@ -17,9 +17,7 @@
         sizes="32x32" href="/favicon-32x32.png"> <link rel="icon"
         type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest"> 
-        <link rel="alternate" type="application/rss+xml" href="https://darrenkwondev.github.io/tags/system_engineering/index.xml" title="darrenkwon.dev blog" />
-         
-        <title>system_engineering | darrenkwon.dev blog</title>
+        <title>kernel study 02: top을 통해 확인할 수 있는 프로세스 정보들 | darrenkwon.dev blog</title>
         
 
         
@@ -89,63 +87,367 @@
         
     </body>
 </html>
+ 
+<div id="single-header">
+    <h1>kernel study 02: top을 통해 확인할 수 있는 프로세스 정보들</h1>
+    <div id="single-meta">
+         
+        <span class="datesub"
+            >Dec 28, 2023</span
+        >
+          
+<span id="tags">
+  &nbsp;│&nbsp;
+   <span>
+    <a href="https://darrenkwondev.github.io/tags/linux/">#linux</a>
+  </span>&nbsp; <span>
+    <a href="https://darrenkwondev.github.io/tags/system_engineering/">#system_engineering</a>
+  </span>&nbsp; <span>
+    <a href="https://darrenkwondev.github.io/tags/korean/">#korean</a>
+  </span>&nbsp; <span>
+    <a href="https://darrenkwondev.github.io/tags/kernel/">#kernel</a>
+  </span>&nbsp;</span>
 
 
-<h1>system_engineering</h1>
-<ul class="post-list">
-    
-
-    <li>
-
-    <div style="display: grid; grid-template-columns: 7em auto">
-      <span class="date">Dec 28, 2023</span>
-      
-      <a class="bold-post-in-list" href="/posts/2023-12-27_kernel_study_02.md/"
-        >kernel study 02: top을 통해 확인할 수 있는 프로세스 정보들</a
-      >
-      
     </div>
-
-</li>
-
-
-
-    
-
-    <li>
-
-    <div style="display: grid; grid-template-columns: 7em auto">
-      <span class="date">Dec 27, 2023</span>
-      
-      <a class="bold-post-in-list" href="/posts/2023-12-27_from-home-to-internet/"
-        >홈 네트워크 구성으로 알아보는 네트워크 기초</a
-      >
-      
-    </div>
-
-</li>
-
-
-
-    
-
-    <li>
-
-    <div style="display: grid; grid-template-columns: 7em auto">
-      <span class="date">Dec 27, 2023</span>
-      
-      <a class="bold-post-in-list" href="/posts/2023-12-27_kernel_study_01.md/"
-        >kernel study 01: 시스템 구성 정보 확인하기</a
-      >
-      
-    </div>
-
-</li>
-
-
-
-    
+</div>
+ 
+<aside class="hidden lg:block toc" id="tableOfContentContainer">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#top">top</a></li>
+    <li><a href="#memory">memory</a>
+      <ul>
+        <li><a href="#virtual-memory-메모리-가상화">virtual memory (메모리 가상화)</a></li>
+        <li><a href="#linux-memory-types">Linux Memory Types</a></li>
+        <li><a href="#memory-commit-과정과-virt-res-shr">memory commit 과정과 VIRT, RES, SHR</a></li>
+        <li><a href="#memory-overcommit">memory overcommit</a></li>
+      </ul>
+    </li>
+    <li><a href="#process-status">process status</a></li>
+    <li><a href="#pr-ni">PR, NI</a></li>
   </ul>
+</nav>
+</aside>
+
+
+<main><h2 id="top">top</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>top -hv|-bcEeHiOSs1 -d secs -n max -u|U user -p pids -o field -w <span style="color:#f92672">[</span>cols<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><p class="imgp">
+  <img loading="lazy" src="./top.png" alt="test"  />
+</p>
+</p>
+<p>단순한 사용 방법은 <a href="https://zzsza.github.io/development/2018/07/18/linux-top/"  target="_blank" rel="noreferrer nofollow">리눅스 top 정리 및 설명</a>
+을 참고하는 것이 좋습니다.<br>
+또한, 표현된 각 column 외에도 다른 metric은 man 페이지를 통해 확인하실 수 있습니다.</p>
+<p>여기서는 top을 통해 살펴볼 수 있는 세부적인 여러 process 관련 정보들을 살펴보도록 하겠습니다.</p>
+ <style type="text/css">
+    .box-shortcode {
+        padding: 1.2em;
+        padding-top: 1em;
+        line-height: 1.5em;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        border-radius: 3px;
+        color: var(--text);
+        background: #f3ebe850;
+    }
+
+    .box-title {
+        margin: -18px -18px 12px;
+        padding: 4px 18px;
+        border-radius: 3px 3px 0 0;
+        font-weight: 700;
+        color: var(--text);
+        background: #6ab0de;
+    }
+    .box-shortcode.warning .box-title {
+        background: #ff6b6b;
+    }
+    .box-shortcode.warning {
+        background: #ff6b6b4f;
+    }
+    .box-shortcode.info .box-title {
+        background: #0089e488;
+    }
+    .box-shortcode.info {
+        background: #0089e41c;
+    }
+    .box-shortcode.important .box-title {
+        background: #f7ec2c;
+    }
+    .box-shortcode.important {
+        background: #f7ec2c7d;
+    }
+    .box-shortcode.tip .box-title {
+        background: #a3ffa34d;
+    }
+    .box-shortcode.tip {
+        background: #a3ffa34d;
+    }
+    .icon-box {
+        display: inline-flex;
+        align-self: center;
+        margin-right: 8px;
+    }
+    .icon-box img,
+    .icon-box svg {
+        height: 1em;
+        width: 1em;
+        fill: var(--text-dim);
+    }
+    .icon-box img,
+    .icon-box.baseline svg {
+        top: 0.125em;
+        position: relative;
+    }
+    .box-shortcode p {
+        margin-bottom: 0.6em;
+    }
+    .box-shortcode p:first-of-type {
+        display: inline;
+    }
+    .box-shortcode p:nth-of-type(2) {
+        margin-top: 0.6em;
+    }
+    .box-shortcode p:last-child {
+        margin-bottom: 0;
+    }
+</style>
+
+
+<svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg">
+    <symbol
+        id="tip-box"
+        viewBox="0 0 512 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+        />
+    </symbol>
+    <symbol
+        id="important-box"
+        viewBox="0 0 512 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+        />
+    </symbol>
+    <symbol
+        id="warning-box"
+        viewBox="0 0 576 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+        />
+    </symbol>
+    <symbol
+        id="info-box"
+        viewBox="0 0 512 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
+        />
+    </symbol>
+</svg><div
+    class="box box-shortcode info"
+    
+>
+    <span class="icon-box baseline">
+        <svg><use href="#info-box"></use></svg>
+    </span> <p>task</p>
+<p>리눅스에서 프로세스와 스레드는 개념적으로 구분되지만, 내부적으로는 모두 &lsquo;태스크&rsquo;로 관리됩니다.<br>
+리눅스 커널은 프로세스와 스레드를 동일한 기본 구조인 &rsquo;task_struct&rsquo;를 사용하여 표현합니다.</p>
+<p><a href="https://elixir.bootlin.com/linux/latest/source/include/linux/sched.h"  target="_blank" rel="noreferrer nofollow">sched.h</a>
+</p> </div>
+
+<p><strong>top의 개선판들</strong></p>
+<ul>
+<li><a href="https://github.com/hishamhm/htop"  target="_blank" rel="noreferrer nofollow">htop</a>
+, <a href="https://github.com/MrRio/vtop"  target="_blank" rel="noreferrer nofollow">vtop</a>
+, <a href="https://github.com/aksakalli/gtop"  target="_blank" rel="noreferrer nofollow">gtop</a>
+, <a href="https://github.com/cjbassi/gotop"  target="_blank" rel="noreferrer nofollow">gotop</a>
+</li>
+</ul>
+<h2 id="memory">memory</h2>
+<h3 id="virtual-memory-메모리-가상화">virtual memory (메모리 가상화)</h3>
+<blockquote>
+A program selects a memory location using a virtual address. The processor translates this into a physical address and finally the memory controller selects the RAM chip corresponding to that address.
+</blockquote>
+<p>즉, 프로세스는 virtual address를 통해 메모리를 다루지만, 실제 physical address로의 변환은 processor가 수행하는 셈입니다.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>정리하자면,</p>
+<ul>
+<li><strong>virtual address(가상 주소): 프로세스가 참조하는 주소</strong></li>
+<li><strong>physical address(물리 주소): 실제 메모리 주소</strong></li>
+</ul>
+<p>이며, 특정 가상 주소가 어느 물리 주소에 매핑되어있는지 변환하는 과정을 수행하는 과정은 cpu(processor) 내의 MMU(Memory Management Unit)가 수행합니다. MMU의 역할을 다시 정리하자면, CPU에에서 컴파일된 코드 실행시 가상 주소 메모리 접근이 필요할 때 해당 주소를 물리 주소 값으로 변환해주는 하드웨어 장치입니다.</p>
+<p>가상 메모리 서브시스템의 실제 구현 세부 사항을 직접 확인해보고 싶다면 lwn의 관련 아티클<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 을 참고할 수 있습니다.</p>
+<h3 id="linux-memory-types">Linux Memory Types</h3>
+<p>man 페이지에 따르면 프로세스가 소유한 메모리는 다음 4가지로 분류될 수 있습니다. 지금 당장 top의 출력물을 이해하는데 필요한 내용은 아니지만, 이후에 프로세스의 메모리 사용량을 살펴볼 때 필요한 내용이므로 간단히 정리해보도록 하겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>                             Private | Shared
+</span></span><span style="display:flex;"><span>                         1           |          2
+</span></span><span style="display:flex;"><span>    Anonymous  . stack               |
+</span></span><span style="display:flex;"><span>               . malloc()            |
+</span></span><span style="display:flex;"><span>               . brk()/sbrk()        | . POSIX shm*
+</span></span><span style="display:flex;"><span>               . mmap(PRIVATE, ANON) | . mmap(SHARED, ANON)
+</span></span><span style="display:flex;"><span>              -----------------------+----------------------
+</span></span><span style="display:flex;"><span>               . mmap(PRIVATE, fd)   | . mmap(SHARED, fd)
+</span></span><span style="display:flex;"><span>  File-backed  . pgms/shared libs    |
+</span></span><span style="display:flex;"><span>                         3           |          4
+</span></span></code></pre></div><p>위 사분면에 근거하여, top의 각 세부 정보들을 대략적으로 설명하면 다음과 같습니다.</p>
+<p>우리가 흔히 메모리 영역을 heap, stack, data, code로 분류하곤 합니다. 이에 대해 관련 있는 내용은 다음과 같습니다.</p>
+<ul>
+<li>stack : quadrant 1에 해당합니다. 컴파일 타임에 크기가 결정됩니다.</li>
+<li>heap : quadrant 1에 해당하되 mmap을 통해 할당된 경우에도 속합니다. 우리가 흔히 쓰는 malloc이 qudrant 1에 속함을 확인해볼 수 있습니다.</li>
+<li>CODE : the `pgms&rsquo; portion of quadrant 3</li>
+<li>DATA : the entire quadrant 1 portion of VIRT plus all explicit mmap file-backed pages of quadrant 3</li>
+</ul>
+<p>top의 출력물에서 관련있는 정보는 다음과 같습니다.</p>
+<ul>
+<li>VIRT : everything in-use and/or reserved (all quadrants)</li>
+<li>SHR : subset of RES (excludes 1, includes all 2 &amp; 4, some 3)</li>
+<li>RES : anything occupying physical memory which, beginning with Linux-4.5, is the sum of the following three fields:
+<ul>
+<li>RSan - quadrant 1 pages, which include any</li>
+<li>former quadrant 3 pages if modified</li>
+<li>RSfd - quadrant 3 and quadrant 4 pages</li>
+<li>RSsh - quadrant 2 pages</li>
+</ul>
+</li>
+</ul>
+<h3 id="memory-commit-과정과-virt-res-shr">memory commit 과정과 VIRT, RES, SHR</h3>
+<p>이제 종합적으로 프로세스가 처음 생성될 때 메모리를 할당 받는 과정인 memory commit을 살펴보겠습니다.</p>
+<p>가상 메모리 할당 (<u>VIRT</u>): 프로세스가 생성될 때, 커널은 해당 프로세스에 대해 가상 메모리 공간(VIRT)을 할당합니다. 이 공간은 프로세스가 사용할 수 있는 메모리의 최대 범위를 나타내지만, 처음에는 실제 물리 메모리에 할당되지 않습니다. 이것은 메모리를 효율적으로 관리하고, 실제로 필요할 때만 물리 메모리를 사용하도록 하는 것입니다.</p>
+<p>실제 메모리 할당과 페이지 폴트 (<u>RES</u>): 프로세스가 운영되는 동안, 특히 쓰기 작업이 시작될 때, 가상 메모리의 일부가 실제로 필요하게 됩니다. 이때 &lsquo;페이지 폴트(page fault)&lsquo;가 발생합니다. 페이지 폴트는 매핑된 물리적 메모리가 페이지 테이블에 존재하지 않을 때 발생하는 것으로, 이를 통해 커널은 해당 가상 메모리 공간에 대응하는 물리 메모리(RES)를 할당하게 됩니다.</p>
+<p>공유 메모리 (<u>SHR</u>): 공유 라이브러리와 같이 여러 프로세스에서 공유되는 메모리 영역은 SHR(공유 메모리)로 표시됩니다. 이러한 메모리는 다른 프로세스와 공유되는 물리적 메모리 주소를 가리키며, 각 프로세스의 가상 메모리 공간을 통해 동일한 물리적 메모리 주소를 참조하게 됩니다. 이는 메모리 사용의 효율성을 높이고, 중복을 방지하는 역할을 합니다.</p>
+<details>
+  <summary>VIRT, RES, SHR에 대한 man 페이지 설명</summary>
+<pre><code>1.  VIRT  --  Virtual Memory Size (KiB)
+The total amount of virtual memory used by the task.  It includes all code, data and shared libraries plus  pages  that  have
+been swapped out and pages that have been mapped but not used.
+
+22. RES  --  Resident Memory Size (KiB)
+A subset of the virtual address space (VIRT) representing the non-swapped physical memory a task is currently using.   It  is
+also the sum of the RSan, RSfd and RSsh fields.
+It  can  include  private anonymous pages, private pages mapped to files (including program images and shared libraries) plus
+shared anonymous pages.  All such memory is backed by the swap file represented separately under SWAP.
+Lastly, this field may also include shared file-backed pages which, when modified, act as a dedicated swap file and thus will
+never impact SWAP.
+
+30. SHR  --  Shared Memory Size (KiB)
+A subset of resident memory (RES) that may be used by other processes.  It will include shared  anonymous  pages  and  shared
+file-backed pages.  It also includes private pages mapped to files representing program images and shared libraries.
+</code></pre>
+</details>
+<h3 id="memory-overcommit">memory overcommit</h3>
+<p>프로세스가 요구하는 메모리의 양은 결국 물리 메모리 공간의 한계를 넘을 수 없다.<br>
+넘게 된다면 커널 파라미터인 vm.overcommit_memory의 정의에 따라 커널이 처리한다.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sysctl vm.overcommit_memory <span style="color:#75715e"># can be 0, 1, 2</span>
+</span></span></code></pre></div><h2 id="process-status">process status</h2>
+<p>맨 페이지를 통해 좀 더 자세한 내용을 살펴보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>29. S  --  Process Status
+</span></span><span style="display:flex;"><span>    The status of the task which can be one of:
+</span></span><span style="display:flex;"><span>        D = uninterruptible sleep
+</span></span><span style="display:flex;"><span>        I = idle
+</span></span><span style="display:flex;"><span>        R = running
+</span></span><span style="display:flex;"><span>        S = sleeping
+</span></span><span style="display:flex;"><span>        T = stopped by job control signal
+</span></span><span style="display:flex;"><span>        t = stopped by debugger during trace
+</span></span><span style="display:flex;"><span>        Z = zombie
+</span></span></code></pre></div><ul>
+<li>D (<code>un</code>interruptible sleep)
+i/o를 대기하고 있는 프로세스를 의미합니다. 프로세스가 D 상태라는 것은, run queue에서 나와 wait queue에서 대기하게 됨을 말합니다.
+만약 i/o 작업이 완료되면 (예를 들어, read/write가 완료되면) 프로세스는 다시 R 상태가 됩니다.</li>
+<li>R
+실제로 cpu를 사용하고 있는 프로세스를 의미합니다.</li>
+<li>S (interruptible sleep)
+sleep 상태입니다. D와 다른 점은,
+i/o가 아닌 단순 sleep이나 콘솔의 입력을 기다리는 경우에는 S 상태가 됩니다.</li>
+<li>T, t
+프로세스를 디버거, strace 등으로 중단시킨 상태를 의미합니다.</li>
+<li>Z
+좀비 프로세스입니다. 종료되었지만, 부모 프로세스에 의해 아직 회수(리소스 해제)되지 않은 프로세스입니다. 부모 프로세스가 자식 프로세스의 exit code(exit(int) 혹은 main return(int))을 요청해야 합니다.</li>
+</ul>
+<p>보통 좀비 프로세스를 제거하기 위해서 child process의 종료 시그널을 받아 처리하는 방식을 사용하곤 합니다. 아래는 간략한 예시입니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle_child</span>(<span style="color:#66d9ef">int</span> sig) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sig <span style="color:#f92672">==</span> SIGCHLD) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> status;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 성공시 종료된 ps의 pid반환.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 특정 pid가 아닌 -1을 전달함으로써 임의의 자식 프로세스 종료를 처리함.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">pid_t</span> id <span style="color:#f92672">=</span> <span style="color:#a6e22e">waitpid</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>status, WNOHANG); <span style="color:#75715e">// non blocking
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">WIFEXITED</span>(status)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;remove ps id : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, id);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;child send : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">WEXITSTATUS</span>(status));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pid_t</span> pid <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// signal handling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> sigaction act;
+</span></span><span style="display:flex;"><span>    act.sa_handler <span style="color:#f92672">=</span> handle_child;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sigemptyset</span>(<span style="color:#f92672">&amp;</span>act.sa_mask);
+</span></span><span style="display:flex;"><span>    act.sa_flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sigaction</span>(SIGCHLD, <span style="color:#f92672">&amp;</span>act, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ... <span style="color:#960050;background-color:#1e0010">생략</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="pr-ni">PR, NI</h2>
+<p>run queue에 잡힌 task들은 PR(priority)와 NI(nice)에 따라 스케쥴러의 알고리즘에 의해 cpu를 할당받게 됩니다.</p>
+<p>실제로 PR이 낮으면 먼저 dispatcher가 cpu에게 처리해줄 것을 요청한다.
+NI는 PR의 조정값으로, 우선순위는 PR + NI로 결정된다.</p>
+<p>예를 들어 process A의 PR: 10, NI: 0, process B의 PR: 10, NI: 5라면,
+process A가 10, process B가 15의 우선순위를 갖게 된다.
+따라서 process A가 먼저 cpu를 할당받게 된다.</p>
+<p><strong>renice</strong></p>
+<p>Alters the scheduling priority/niceness of one or more running processes.<br>
+Niceness values range from -20 (most favorable to the process) to 19 (least favorable to the process).<br>
+More information: <a href="https://manned.org/renice"  target="_blank" rel="noreferrer nofollow">https://manned.org/renice</a>
+.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Change priority of a running process:</span>
+</span></span><span style="display:flex;"><span>renice -n niceness_value -p pid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Change priority of all processes owned by a user:</span>
+</span></span><span style="display:flex;"><span>renice -n niceness_value -u user
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Change priority of all processes that belong to a process group:</span>
+</span></span><span style="display:flex;"><span>renice -n niceness_value --pgrp process_group
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>이러한 가상(logical, virtual)과 물리(physical)의 분리는 메모리 뿐만 아니라 스토리지, 네트워크 등의 분야에서 자주 접하게 되는 패턴입니다. 물리를 감싸는 하나의 추상화된 레이어를 제공하여 파편화 해결, 공유화 등의 이점을 제공할 수 있습니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://lwn.net/Articles/253361/"  target="_blank" rel="noreferrer nofollow">https://lwn.net/Articles/253361/</a>
+&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://mjmwired.net/kernel/Documentation/vm/overcommit-accounting"  target="_blank" rel="noreferrer nofollow">https://mjmwired.net/kernel/Documentation/vm/overcommit-accounting</a>
+&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</main>
+
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onload="renderMathInElement(document.body);"></script>
+ 
+
+
+
 
 
 <br>

@@ -6,7 +6,21 @@
     <description>Recent content in kernel on darrenkwon.dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Dec 2023 00:02:35 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Dec 2023 02:50:13 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kernel study 02: top을 통해 확인할 수 있는 프로세스 정보들</title>
+      <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/</link>
+      <pubDate>Thu, 28 Dec 2023 02:50:13 +0900</pubDate>
+      
+      <guid>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/</guid>
+      <description>top top -hv|-bcEeHiOSs1 -d secs -n max -u|U user -p pids -o field -w [cols] 단순한 사용 방법은 리눅스 top 정리 및 설명 을 참고하는 것이 좋습니다.
+또한, 표현된 각 column 외에도 다른 metric은 man 페이지를 통해 확인하실 수 있습니다.
+여기서는 top을 통해 살펴볼 수 있는 세부적인 여러 process 관련 정보들을 살펴보도록 하겠습니다.
+task
+리눅스에서 프로세스와 스레드는 개념적으로 구분되지만, 내부적으로는 모두 &amp;lsquo;태스크&amp;rsquo;로 관리됩니다.
+리눅스 커널은 프로세스와 스레드를 동일한 기본 구조인 &amp;rsquo;task_struct&amp;rsquo;를 사용하여 표현합니다.</description>
+    </item>
+    
     <item>
       <title>kernel study 01: 시스템 구성 정보 확인하기</title>
       <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/</link>

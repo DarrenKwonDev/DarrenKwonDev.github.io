@@ -8,14 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Dec 2023 22:00:39 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>홈 네트워크의 기술로 살펴보는 클라우드 네트워크</title>
+      <title>홈 네트워크 구성으로 알아보는 네트워크 기초</title>
       <link>https://darrenkwondev.github.io/posts/2023-12-27_from-home-to-internet/</link>
       <pubDate>Wed, 27 Dec 2023 22:00:39 +0900</pubDate>
       
       <guid>https://darrenkwondev.github.io/posts/2023-12-27_from-home-to-internet/</guid>
       <description>네트워크 시리즈
-홈 네트워크의 기술로 살펴보는 클라우드 네트워크 VM network와 도커 네트워크 (예정) VM으로 만드는 쿠버네티스 (예정) p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정) private ip과 CIDR 보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 gateway 역할을 하는 router가 있고, 해당 router는 public ip(공인 ip)를 가지곤 한다. 그 내부에 private ip(사설 ip)가 대부분의 상황이다.
-이를 도식화하자면 다음과 같다. 참고로, 흔히 말하는 공유기는 가정용 라우터 + NAT 등의 기능을 수행한다.</description>
+홈 네트워크 구성으로 알아보는 네트워크 기초 VM network와 도커 네트워크 (예정) VM으로 만드는 쿠버네티스 (예정) p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정) private ip와 CIDR 보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 ISP가 하나의 public ip(공인 ip)를 할당하며 해당 router는 내부 private ip를 public ip로 변환하는 일종의 문(gateway) 역할을 수행한다.
+흔히 말하는 공유기는 가정용 라우터 + NAT 등의 기능을 수행한다.
+이를 도식화하자면 다음과 같다.</description>
     </item>
     
   </channel>
