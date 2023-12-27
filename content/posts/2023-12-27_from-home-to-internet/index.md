@@ -1,5 +1,5 @@
 +++
-title = '홈 네트워크의 기술로 살펴보는 클라우드 네트워크'
+title = '홈 네트워크 구성으로 알아보는 네트워크 기초'
 date = 2023-12-27T22:00:39+09:00
 math = true
 toc = true
@@ -11,7 +11,7 @@ tags = ["network", "korean", "cloud", "system_engineering"]
 {{< box info >}}
 네트워크 시리즈
 
--   홈 네트워크의 기술로 살펴보는 클라우드 네트워크
+-   홈 네트워크 구성으로 알아보는 네트워크 기초
 -   VM network와 도커 네트워크 (예정)
 -   VM으로 만드는 쿠버네티스 (예정)
 -   p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정)
@@ -72,8 +72,7 @@ A(PC A<br/>172.301.56) <--> R((router<br/>172.30.1.254))
 C(PC B<br/>172.30.1.71) <--> R((router<br/>172.30.1.254))
 ```
 
-위 주소는 private ip로,
-내 컴퓨터의 public ip는 다음과 같이 확인할 수 있다.
+PC A와 B 간에는 private ip를 통해 통신이 가능하다. 예를 들어 Window OS인 PC A에서 sshd를 실행하고, Mac OS로 구동 중인 PC B에서 ssh로 접속할 수 있다.
 
 ## public ip와 router
 
@@ -83,7 +82,7 @@ router의 주요 역할인 NAT과 port-forwarding에 대해 알아보겠습니�
 
 private ip는 외부에서 접근할 수 없습니다. 외부에서 접근하려면 public ip로 변환되어야 합니다. 이를 위해 router는 NAT(Network Address Translation)을 수행합니다.
 
-NAT이란, 이름 그대로 네트워크 주소를 변환하는 기술이며 하나의 ip 주소를 다른 하나의 ip로 변환하는 것을 의미합니다. 이 과정은 NAT Table을 통해 이루어집니다.
+NAT이란, 이름 그대로 네트워크 주소를 변환하는 기술이며 하나의 ip 주소를 다른 하나의 ip로 변환하는 것을 의미합니다. 이 과정은 NAT Table을 통해 이루어집니다. 보통은 여러 대의 기기가 public ip로 내부망에서 구별되며, 외부에서 바라보았을 때는 하나의 public ip로 보이게 됩니다.
 
 <figure>
 <img src="./NAT.png">
