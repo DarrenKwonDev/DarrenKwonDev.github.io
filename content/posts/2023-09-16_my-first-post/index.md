@@ -65,6 +65,9 @@ $$
 all image lazy loaded.
 [page scoped img](https://gohugo.io/content-management/page-resources/)
 
+<!-- 이러한 방식의 이미지 첨부는, index.md라는 파일며을 가져야만 가능하다. -->
+<!-- 이미지가 404가 뜬다면, 작성하고 있는 markdown의 파일명을 index.md로 고쳐라. -->
+
 ![what](./test.png)
 
 ### file tress

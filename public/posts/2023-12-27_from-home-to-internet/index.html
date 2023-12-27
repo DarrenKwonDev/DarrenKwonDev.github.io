@@ -17,9 +17,7 @@
         sizes="32x32" href="/favicon-32x32.png"> <link rel="icon"
         type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest"> 
-        <link rel="alternate" type="application/rss+xml" href="https://darrenkwondev.github.io/tags/system_engineering/index.xml" title="darrenkwon.dev blog" />
-         
-        <title>system_engineering | darrenkwon.dev blog</title>
+        <title>홈 네트워크의 기술로 살펴보는 클라우드 네트워크 | darrenkwon.dev blog</title>
         
 
         
@@ -89,46 +87,293 @@
         
     </body>
 </html>
+ 
+<div id="single-header">
+    <h1>홈 네트워크의 기술로 살펴보는 클라우드 네트워크</h1>
+    <div id="single-meta">
+         
+        <span class="datesub"
+            >Dec 27, 2023</span
+        >
+          
+<span id="tags">
+  &nbsp;│&nbsp;
+   <span>
+    <a href="https://darrenkwondev.github.io/tags/network/">#network</a>
+  </span>&nbsp; <span>
+    <a href="https://darrenkwondev.github.io/tags/korean/">#korean</a>
+  </span>&nbsp; <span>
+    <a href="https://darrenkwondev.github.io/tags/cloud/">#cloud</a>
+  </span>&nbsp; <span>
+    <a href="https://darrenkwondev.github.io/tags/system_engineering/">#system_engineering</a>
+  </span>&nbsp;</span>
 
 
-<h1>system_engineering</h1>
-<ul class="post-list">
-    
-
-    <li>
-
-    <div style="display: grid; grid-template-columns: 7em auto">
-      <span class="date">Dec 27, 2023</span>
-      
-      <a class="bold-post-in-list" href="/posts/2023-12-27_from-home-to-internet/"
-        >홈 네트워크의 기술로 살펴보는 클라우드 네트워크</a
-      >
-      
     </div>
-
-</li>
-
-
-
-    
-
-    <li>
-
-    <div style="display: grid; grid-template-columns: 7em auto">
-      <span class="date">Dec 27, 2023</span>
-      
-      <a class="bold-post-in-list" href="/posts/2023-12-27_kernel_study_01.md/"
-        >kernel study 01: 시스템 구성 정보 확인하기</a
-      >
-      
-    </div>
-
-</li>
-
-
-
-    
+</div>
+ 
+<aside class="hidden lg:block toc" id="tableOfContentContainer">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#private-ip과-cidr">private ip과 CIDR</a></li>
+    <li><a href="#public-ip와-router">public ip와 router</a>
+      <ul>
+        <li><a href="#nat-network-address-translation">NAT (Network Address Translation)</a></li>
+        <li><a href="#port-forwarding">port-forwarding</a></li>
+        <li><a href="#nat과-port-forwarding을-통해-클라우드의-subnet-간-통신-이해하기">NAT과 port-forwarding을 통해 클라우드의 subnet 간 통신 이해하기</a></li>
+      </ul>
+    </li>
   </ul>
+</nav>
+</aside>
+
+
+<main> <style type="text/css">
+    .box-shortcode {
+        padding: 1.2em;
+        padding-top: 1em;
+        line-height: 1.5em;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        border-radius: 3px;
+        color: var(--text);
+        background: #f3ebe850;
+    }
+
+    .box-title {
+        margin: -18px -18px 12px;
+        padding: 4px 18px;
+        border-radius: 3px 3px 0 0;
+        font-weight: 700;
+        color: var(--text);
+        background: #6ab0de;
+    }
+    .box-shortcode.warning .box-title {
+        background: #ff6b6b;
+    }
+    .box-shortcode.warning {
+        background: #ff6b6b4f;
+    }
+    .box-shortcode.info .box-title {
+        background: #0089e488;
+    }
+    .box-shortcode.info {
+        background: #0089e41c;
+    }
+    .box-shortcode.important .box-title {
+        background: #f7ec2c;
+    }
+    .box-shortcode.important {
+        background: #f7ec2c7d;
+    }
+    .box-shortcode.tip .box-title {
+        background: #a3ffa34d;
+    }
+    .box-shortcode.tip {
+        background: #a3ffa34d;
+    }
+    .icon-box {
+        display: inline-flex;
+        align-self: center;
+        margin-right: 8px;
+    }
+    .icon-box img,
+    .icon-box svg {
+        height: 1em;
+        width: 1em;
+        fill: var(--text-dim);
+    }
+    .icon-box img,
+    .icon-box.baseline svg {
+        top: 0.125em;
+        position: relative;
+    }
+    .box-shortcode p {
+        margin-bottom: 0.6em;
+    }
+    .box-shortcode p:first-of-type {
+        display: inline;
+    }
+    .box-shortcode p:nth-of-type(2) {
+        margin-top: 0.6em;
+    }
+    .box-shortcode p:last-child {
+        margin-bottom: 0;
+    }
+</style>
+
+
+<svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg">
+    <symbol
+        id="tip-box"
+        viewBox="0 0 512 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+        />
+    </symbol>
+    <symbol
+        id="important-box"
+        viewBox="0 0 512 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+        />
+    </symbol>
+    <symbol
+        id="warning-box"
+        viewBox="0 0 576 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+        />
+    </symbol>
+    <symbol
+        id="info-box"
+        viewBox="0 0 512 512"
+        preserveAspectRatio="xMidYMid meet"
+    >
+        <path
+            d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
+        />
+    </symbol>
+</svg><div
+    class="box box-shortcode info"
+    
+>
+    <span class="icon-box baseline">
+        <svg><use href="#info-box"></use></svg>
+    </span> <p>네트워크 시리즈</p>
+<ul>
+<li>홈 네트워크의 기술로 살펴보는 클라우드 네트워크</li>
+<li>VM network와 도커 네트워크 (예정)</li>
+<li>VM으로 만드는 쿠버네티스 (예정)</li>
+<li>p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정)</li>
+</ul> </div>
+
+<h2 id="private-ip과-cidr">private ip과 CIDR</h2>
+<p>보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 gateway 역할을 하는 router가 있고, 해당 router는 public ip(공인 ip)를 가지곤 한다. 그 내부에 private ip(사설 ip)가 대부분의 상황이다.</p>
+<p>이를 도식화하자면 다음과 같다.
+참고로, 흔히 말하는 공유기는 가정용 라우터 + NAT 등의 기능을 수행한다.</p>
+<pre class="mermaid">flowchart LR
+
+C(내부 기기, private ip) <--> B(gateway, NAT, public ip 변환) <--> A(external)
+  </pre
+>
+
+<p>이러한 구성은 홈 네트워크를 포함한 대부분의 네트워크에서 적용되는 구성이다.<br>
+AWS 기준으로는 private subnet 대역에 존재하는 서버들은 직접적으로 외부 인터넷과 패킷을 주고 받을 수 없다. 이 부분은 NAT을 설명하면서 보충하도록 하겠다.</p>
+<p>일반적인 private ip의 대역은 다음과 같다.</p>
+<ul>
+<li>private ip 대역대
+<ul>
+<li>Class A : <strong>10</strong>.0.0.0 ~ <strong>10</strong>.255.255.255 (10.0.0.0/8)</li>
+<li>Class B : <strong>172.16</strong>.0.0 ~ <strong>172.31</strong>.255.255 (172.16.0.0/12)</li>
+<li>Class C : <strong>192.168</strong>.0.0 ~ <strong>192.168</strong>.255.255 (192.168.0.0/16)</li>
+</ul>
+</li>
+</ul>
+<p>현재 홈 네트워크에서 구성된 private 대역대를 <code>ifconfig</code>, <code>ipconfig</code> 등으로 확인할 수 있다. 여기서는 좀 더 간편한 설명을 위해 <code>ipcalc</code>를 통해 private ip 대역대를 확인해보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ipcalc 172.30.1.56
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력 결과</span>
+</span></span><span style="display:flex;"><span>Address:   172.30.1.56          10101100.00011110.00000001. <span style="color:#ae81ff">00111000</span>
+</span></span><span style="display:flex;"><span>Netmask:   255.255.255.0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span>   11111111.11111111.11111111. <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span>Wildcard:  0.0.0.255            00000000.00000000.00000000. 11111111
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=</span>&gt;
+</span></span><span style="display:flex;"><span>Network:   172.30.1.0/24        10101100.00011110.00000001. <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span>HostMin:   172.30.1.1           10101100.00011110.00000001. <span style="color:#ae81ff">00000001</span>
+</span></span><span style="display:flex;"><span>HostMax:   172.30.1.254         10101100.00011110.00000001. <span style="color:#ae81ff">11111110</span>
+</span></span><span style="display:flex;"><span>Broadcast: 172.30.1.255         10101100.00011110.00000001. <span style="color:#ae81ff">11111111</span>
+</span></span><span style="display:flex;"><span>Hosts/Net: <span style="color:#ae81ff">254</span>                   Class B, Private Internet
+</span></span></code></pre></div><p>위 결과, 현재 명령을 실행한 컴퓨터의 private ip는 172.30.1.56 이며, CIDR block의 크기가 24임을 확인할 수 있다.<br>
+이로써, 해당 홈 네트워크 주어진 호스트 대역은 172.30.1.0 ~ 172.30.1.255 까지이다. 해당 범위 내에서 개개인의 기기와 라우터(게이트웨이)의 주소가 할당된다. 보통은 DHCP에 의해 자동으로 할당된다.</p>
+<p>단, 가능한 호스트 영역 중 첫 주소(127.30.1.0)는 네트워크 식별 주소이며 마지막 주소(127.30.1.255)는 broadcast 주소로 선점되어 있다.</p>
+<p>구체적으로 홈 네트워크를 도식화하자면 다음과 같이 표현될 수 있다. 만약 새로운 network interface가 추가된다면, 해당 interface에 대한 주소가 위에서 언급한 호스트 대역 내로 자동 할당될 것이라 추측할 수 있다.</p>
+<pre class="mermaid">flowchart LR
+
+A(PC A<br/>172.301.56) <--> R((router<br/>172.30.1.254))
+C(PC B<br/>172.30.1.71) <--> R((router<br/>172.30.1.254))
+  </pre
+>
+
+<p>위 주소는 private ip로,
+내 컴퓨터의 public ip는 다음과 같이 확인할 수 있다.</p>
+<h2 id="public-ip와-router">public ip와 router</h2>
+<p>router의 주요 역할인 NAT과 port-forwarding에 대해 알아보겠습니다.</p>
+<h3 id="nat-network-address-translation">NAT (Network Address Translation)</h3>
+<p>private ip는 외부에서 접근할 수 없습니다. 외부에서 접근하려면 public ip로 변환되어야 합니다. 이를 위해 router는 NAT(Network Address Translation)을 수행합니다.</p>
+<p>NAT이란, 이름 그대로 네트워크 주소를 변환하는 기술이며 하나의 ip 주소를 다른 하나의 ip로 변환하는 것을 의미합니다. 이 과정은 NAT Table을 통해 이루어집니다.</p>
+<figure>
+<img src="./NAT.png">
+<figcaption>출처 : https://5kyc1ad.tistory.com/254</figcaption>
+</figure>
+<p>아래 명령어를 통해 간단히 홈 네트워크의 공유기에 할당된 public ip를 확인할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://checkip.amazonaws.com
+</span></span><span style="display:flex;"><span>curl http://icanhazip.com
+</span></span><span style="display:flex;"><span>curl http://ifconfig.me
+</span></span></code></pre></div><p>이러한 NAT 기술은, 퍼블릭 클라우드를 구성할 때도 사용됩니다.</p>
+<p>예를 들어, AWS의 VPC(Virtual Private Cloud)에서는 private subnet에 존재하는 사설 대역 ip의 서버들이 public subnet에 존재하는 NAT을 통해 public IP로 변환되어 외부와 통신하게 되어 egress[outbound]가 가능하지만, 외부 인터넷에서 ingress[inbound]는 안되는 상황을 구성할 수 있습니다.</p>
+<p><p class="imgp">
+  <img loading="lazy" src="./aws_nat_instance.png" alt="aws_nat"  />
+</p>
+</p>
+ <div
+    class="box box-shortcode tip"
+    
+>
+    <span class="icon-box baseline">
+        <svg><use href="#tip-box"></use></svg>
+    </span> <p>Use NAT gateway instead of NAT instance</p>
+<blockquote>
+AWS에서 제공하는 NAT 게이트웨이라는 관리형 NAT 디바이스를 사용하거나, EC2 인스턴스에서 NAT 디바이스(여기서는 NAT 인스턴스라고 함)를 생성할 수 있습니다. NAT 게이트웨이는 더 나은 가용성과 대역폭을 제공하고 관리에 소요되는 작업이 줄어들기 때문에 권장합니다.
+- https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/vpc-nat.html
+</blockquote> </div>
+
+<h3 id="port-forwarding">port-forwarding</h3>
+<p>특정한 포트로 들어오는 데이터 패킷을 다른 포트로 바꿔서 다시 전송해주는 작업입니다. 대부분의 라우터가 지원하는 기능입니다. 라우터의 설정을 조정할 수 있는 페이지에서 직접 설정할 수 있음을 확인할 수 있습니다.</p>
+<figure>
+<img src="./forwarding.jpeg">
+<figcaption>출처 : https://m.blog.naver.com/kangyh5/221531520692</figcaption>
+</figure>
+<p>포트 포워딩을 통해 로컬 서버가 노출한 포트를 외부에 노출하지 않을 수 있는 장점이 있습니다. 서버를 배포할 때는 보통 포트를 숨기려고 하는데 필요한 서비스에서만 외부 접근을 허용하는 등의 보안적인 이유에서 입니다.</p>
+<p>이러한 보안책을 뚫기 위해서 포트 스캐닝을 하는 경우도 있습니다. 제 github에 간단한 <a href="https://github.com/DarrenKwonDev/netproc/blob/master/port_scanning/main.py"  target="_blank" rel="noreferrer nofollow">포트 스캐닝 코드</a>
+를 작성해 놓았습니다.</p>
+<h3 id="nat과-port-forwarding을-통해-클라우드의-subnet-간-통신-이해하기">NAT과 port-forwarding을 통해 클라우드의 subnet 간 통신 이해하기</h3>
+<figure>
+<img src="./cloud_network.png">
+<figcaption>출처 : https://cloudneta.github.io/</figcaption>
+</figure>
+<p>이제 우리는 위 도표를 홈 네트워크의 기술 이해에 기반해서 이해할 수 있습니다.</p>
+<ul>
+<li>private subnet에서 출발(private ip) → 목적지(목적 웹 서버)</li>
+<li>public subnet에 존재하는 NAT이 private IP를 또 다른 private IP로 변환합니다. 다수의 인스턴스에서 다른 private IP가 도착하더라도 하나의 private IP로 만듭니다. 추가로, 이 두 요청을 구분하기 위 PORT도 변환합니다. 변환된 후에는 public subnet의 RT를 참고하여 IGW로 이동합니다.
+<ul>
+<li>NAT devices에서 PORT를 변환하므로 사실상 PAT이지만 관습적으로 이들을 구분해서 부르는 것 같지는 않습니다.</li>
+</ul>
+</li>
+<li>IGW에서 private IP(NAT에 의해 변환됨)를 public IP로 변환하고 이로써 인터넷과 소통할 수 있게 됩니다.</li>
+<li>역으로 인터넷에서 들어오는 경우도 위의 순서를 역으로 밟아가며 진행됩니다. 목적지 IP는 NAT에서 private로 변환되고 NAT은 변환 정보에 따라 다른 IP로 변환된다.</li>
+</ul>
+</main>
+
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onload="renderMathInElement(document.body);"></script>
+ 
+
+
+
+<script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+</script>
+
 
 
 <br>

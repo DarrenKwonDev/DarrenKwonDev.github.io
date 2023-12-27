@@ -6,40 +6,58 @@
     <description>Recent content in Tags on darrenkwon.dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Dec 2023 07:23:52 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Dec 2023 22:00:39 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>kernel</title>
-      <link>https://darrenkwondev.github.io/tags/kernel/</link>
-      <pubDate>Wed, 27 Dec 2023 07:23:52 +0900</pubDate>
+      <title>cloud</title>
+      <link>https://darrenkwondev.github.io/tags/cloud/</link>
+      <pubDate>Wed, 27 Dec 2023 22:00:39 +0900</pubDate>
       
-      <guid>https://darrenkwondev.github.io/tags/kernel/</guid>
+      <guid>https://darrenkwondev.github.io/tags/cloud/</guid>
       <description></description>
     </item>
     
     <item>
       <title>korean</title>
       <link>https://darrenkwondev.github.io/tags/korean/</link>
-      <pubDate>Wed, 27 Dec 2023 07:23:52 +0900</pubDate>
+      <pubDate>Wed, 27 Dec 2023 22:00:39 +0900</pubDate>
       
       <guid>https://darrenkwondev.github.io/tags/korean/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>linux</title>
-      <link>https://darrenkwondev.github.io/tags/linux/</link>
-      <pubDate>Wed, 27 Dec 2023 07:23:52 +0900</pubDate>
+      <title>network</title>
+      <link>https://darrenkwondev.github.io/tags/network/</link>
+      <pubDate>Wed, 27 Dec 2023 22:00:39 +0900</pubDate>
       
-      <guid>https://darrenkwondev.github.io/tags/linux/</guid>
+      <guid>https://darrenkwondev.github.io/tags/network/</guid>
       <description></description>
     </item>
     
     <item>
       <title>system_engineering</title>
       <link>https://darrenkwondev.github.io/tags/system_engineering/</link>
-      <pubDate>Wed, 27 Dec 2023 07:23:52 +0900</pubDate>
+      <pubDate>Wed, 27 Dec 2023 22:00:39 +0900</pubDate>
       
       <guid>https://darrenkwondev.github.io/tags/system_engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kernel</title>
+      <link>https://darrenkwondev.github.io/tags/kernel/</link>
+      <pubDate>Wed, 27 Dec 2023 00:02:35 +0900</pubDate>
+      
+      <guid>https://darrenkwondev.github.io/tags/kernel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://darrenkwondev.github.io/tags/linux/</link>
+      <pubDate>Wed, 27 Dec 2023 00:02:35 +0900</pubDate>
+      
+      <guid>https://darrenkwondev.github.io/tags/linux/</guid>
       <description></description>
     </item>
     

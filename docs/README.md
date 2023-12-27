@@ -32,4 +32,5 @@ hugo version : hugo v0.118.2-da7983ac4b94d97d776d7c2405040de97e95c03d+extended d
 ## etc
 
 -   The most commonly recommended resolution for an OG image is 1200 pixels x 630 pixels (1.91/1 ratio).
+
     -   1200 pixels x 630 pixels

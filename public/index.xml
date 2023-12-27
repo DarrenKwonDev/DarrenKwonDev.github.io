@@ -6,23 +6,24 @@
     <description>Recent content on darrenkwon.dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Dec 2023 07:23:52 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Dec 2023 22:00:39 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>kernel study 02: 프로세스 관련 정보</title>
-      <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/kernel_study_02/</link>
-      <pubDate>Wed, 27 Dec 2023 07:23:52 +0900</pubDate>
+      <title>홈 네트워크의 기술로 살펴보는 클라우드 네트워크</title>
+      <link>https://darrenkwondev.github.io/posts/2023-12-27_from-home-to-internet/</link>
+      <pubDate>Wed, 27 Dec 2023 22:00:39 +0900</pubDate>
       
-      <guid>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/kernel_study_02/</guid>
-      <description>process 관련 정보 top top image
-top의 개선판들에 대한 간략한 소개 htop vtop gtop gotop VIRT, RES, SHR memory overcommit process status niceness </description>
+      <guid>https://darrenkwondev.github.io/posts/2023-12-27_from-home-to-internet/</guid>
+      <description>네트워크 시리즈
+홈 네트워크의 기술로 살펴보는 클라우드 네트워크 VM network와 도커 네트워크 (예정) VM으로 만드는 쿠버네티스 (예정) p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정) private ip과 CIDR 보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 gateway 역할을 하는 router가 있고, 해당 router는 public ip(공인 ip)를 가지곤 한다. 그 내부에 private ip(사설 ip)가 대부분의 상황이다.
+이를 도식화하자면 다음과 같다. 참고로, 흔히 말하는 공유기는 가정용 라우터 + NAT 등의 기능을 수행한다.</description>
     </item>
     
     <item>
       <title>kernel study 01: 시스템 구성 정보 확인하기</title>
-      <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/kernel_study_01/</link>
+      <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/</link>
       <pubDate>Wed, 27 Dec 2023 00:02:35 +0900</pubDate>
       
-      <guid>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/kernel_study_01/</guid>
+      <guid>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_01.md/</guid>
       <description>based on Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-91-generic aarch64) VM
 커널 정보 확인 uname (UNIX name) 커널 이름, 호스트 이름, 커널 버전, 커널 릴리즈, 운영 체제, 하드웨어 이름(아키텍처) 등 시스템 정보를 출력하는 도구
 # uname -a Linux drkup 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 14 13:29:11 UTC 2023 aarch64 aarch64 aarch64 GNU/Linux 5.15.0-91-generic 커널을 사용 중임을 확인할 수 있다.
