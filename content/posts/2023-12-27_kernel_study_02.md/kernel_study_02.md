@@ -12,6 +12,17 @@ tags = ["linux", "system_engineering", "korean", "kernel"]
 
 ### top
 
+top image
+
+![img](./top.png)
+
+#### top의 개선판들에 대한 간략한 소개
+
+-   [htop](https://github.com/hishamhm/htop)
+-   [vtop](https://github.com/MrRio/vtop)
+-   [gtop](https://github.com/aksakalli/gtop)
+-   [gotop](https://github.com/cjbassi/gotop)
+
 ### VIRT, RES, SHR
 
 ### memory overcommit

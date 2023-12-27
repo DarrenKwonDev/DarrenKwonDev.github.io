@@ -9,11 +9,12 @@
     <lastBuildDate>Wed, 27 Dec 2023 07:23:52 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>kernel study 02: 프로세스 관련 정보</title>
-      <link>https://darrenkwondev.github.io/posts/kernel_study_02/</link>
+      <link>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/kernel_study_02/</link>
       <pubDate>Wed, 27 Dec 2023 07:23:52 +0900</pubDate>
       
-      <guid>https://darrenkwondev.github.io/posts/kernel_study_02/</guid>
-      <description>process 관련 정보 top VIRT, RES, SHR memory overcommit process status niceness </description>
+      <guid>https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/kernel_study_02/</guid>
+      <description>process 관련 정보 top top image
+top의 개선판들에 대한 간략한 소개 htop vtop gtop gotop VIRT, RES, SHR memory overcommit process status niceness </description>
     </item>
     
     <item>
