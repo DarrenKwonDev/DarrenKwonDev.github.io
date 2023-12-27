@@ -113,6 +113,17 @@ AWS에서 제공하는 NAT 게이트웨이라는 관리형 NAT 디바이스를 
 </blockquote>
 {{< /box >}}
 
+{{< box info >}}
+NAT 내부 서버를 외부에 곧바로 노출시키기
+
+NAT의 안 쪽에 존재하는 로컬 웹서버를 개발 편의상 외부에 잠깐 노출시키고 싶은 경우 Tunneling의 한 활용 형태로써 ngrok, ngrok 등을 사용할 수 있습니다.
+
+-   https://github.com/anderspitman/awesome-tunneling
+-   https://github.com/pgrok/pgrok
+-   https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/
+
+{{< /box >}}
+
 ### port-forwarding
 
 특정한 포트로 들어오는 데이터 패킷을 다른 포트로 바꿔서 다시 전송해주는 작업입니다. 대부분의 라우터가 지원하는 기능입니다. 라우터의 설정을 조정할 수 있는 페이지에서 직접 설정할 수 있음을 확인할 수 있습니다.
