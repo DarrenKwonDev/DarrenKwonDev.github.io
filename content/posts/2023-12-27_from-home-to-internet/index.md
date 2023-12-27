@@ -18,17 +18,18 @@ tags = ["network", "korean", "cloud", "system_engineering"]
 
 {{< /box >}}
 
-## private ip과 CIDR
+## private ip와 CIDR
 
-보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 gateway 역할을 하는 router가 있고, 해당 router는 public ip(공인 ip)를 가지곤 한다. 그 내부에 private ip(사설 ip)가 대부분의 상황이다.
+보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 ISP가 하나의 public ip(공인 ip)를 할당하며 해당 router는 내부 private ip를 public ip로 변환하는 일종의 문(gateway) 역할을 수행한다.
+
+흔히 말하는 공유기는 가정용 라우터 + NAT 등의 기능을 수행한다.
 
 이를 도식화하자면 다음과 같다.
-참고로, 흔히 말하는 공유기는 가정용 라우터 + NAT 등의 기능을 수행한다.
 
 ```mermaid
 flowchart LR
 
-C(내부 기기, private ip) <--> B(gateway, NAT, public ip 변환) <--> A(external)
+C(내부 기기, private ip) <--> B(gateway, NAT, PAT) <--> A(external)
 ```
 
 이러한 구성은 홈 네트워크를 포함한 대부분의 네트워크에서 적용되는 구성이다.  
@@ -41,7 +42,7 @@ AWS 기준으로는 private subnet 대역에 존재하는 서버들은 직접적
     -   Class B : **172.16**.0.0 ~ **172.31**.255.255 (172.16.0.0/12)
     -   Class C : **192.168**.0.0 ~ **192.168**.255.255 (192.168.0.0/16)
 
-현재 홈 네트워크에서 구성된 private 대역대를 `ifconfig`, `ipconfig` 등으로 확인할 수 있다. 여기서는 좀 더 간편한 설명을 위해 `ipcalc`를 통해 private ip 대역대를 확인해보자.
+현재 홈 네트워크에서 구성된 private 대역대를 `ifconfig`(linux), `ip`(linux), `ipconfig`(window) 등으로 확인할 수 있다. 여기서는 좀 더 간편한 설명을 위해 `ipcalc`를 통해 private ip 대역대를 확인해보자.
 
 ```bash
 ipcalc 172.30.1.56
