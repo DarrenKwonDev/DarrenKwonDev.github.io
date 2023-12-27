@@ -147,6 +147,42 @@ AWS에서 제공하는 NAT 게이트웨이라는 관리형 NAT 디바이스를 
 
 traceroute를 통해 router 바깥의 인터넷을 확인해보자.
 
+일반적인 네트워크 멘탈 모델은 다음과 같다.
+
+<details>
+  <summary>네트워크 멘탈 모델 (click)</summary>
+  
+```mermaid
+graph TD
+    subgraph home ["Home Network"]
+        PC1[("PC1\nPrivate IP")]
+        PC2[("PC2\nPrivate IP")]
+        PC3[("PC3\nPrivate IP")]
+        Router1[("Home Router\nPrivate IP")]
+        PC1 --> Router1
+        PC2 --> Router1
+        PC3 --> Router1
+    end
+
+    subgraph ISP ["ISP Network"]
+        ISP_Router[("ISP Router\nPublic IP")]
+    end
+
+    subgraph internet ["Internet"]
+        External_Router1[("Router A\nPublic IP")]
+        External_Router2[("Router B\nPublic IP")]
+        Server[("Server\nPublic IP")]
+    end
+
+    Router1 --> ISP_Router --> External_Router1 --> External_Router2 --> Server
+
+````
+
+</details>
+
+
+
+
 ```text
 traceroute google.com # 명령어를 입력한 시점에 google.com은 DNS 서버를 거쳐 ip로 표현된다.
 
@@ -178,7 +214,7 @@ traceroute to google.com (142.250.207.110), 64 hops max, 52 byte packets
 # 도착
 10  kix06s11-in-f14.1e100.net (142.250.207.110)  32.600 ms
     108.170.242.198 (108.170.242.198)  35.603 ms  35.615 ms
-```
+````
 
 결과적으로 10홉을 거쳐서 목적지에 도달했다. 이는 router 바깥의 인터넷이 10개의 라우터를 거쳐서 도달한다는 것을 의미한다.
 
