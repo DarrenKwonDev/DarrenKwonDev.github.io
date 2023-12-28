@@ -133,7 +133,7 @@ Once every LOAD_FREQ:
 
 새로운 avenrun(avenrun[n])을 계산하기 위해 이전 시점의 avenrun(avenrun[0])을 활용하며, 이전 시점 avenrun[0]는 exp_n에 의해 지수적으로 감소하며[^2], 새로운 R, D 상태의 프로세스의 수를 의미하는 nr_active는 (1 - exp_n)에 의해 지수적으로 증가합니다.
 
-[^2]: decay는 일반적으로 최근에 더욱 가중치를 주고 싶어 과거의 데이터의 가중치를 감소시키는 일종의 수학적 trick입니다.
+[^2]: decay는 시간의 흐름에 따라 과거의 데이터의 가중치를 감소시키는 일종의 수학적 trick입니다.
 
 $$
 active \space process = R + D \\\
