@@ -3,18 +3,15 @@
 <div class="home-content">{{ .Content }}</div>
 
 {{ if .IsHome }}
-    <!--TODO: replace with faster search-->
-    {{ partial "search-form.html" . }}
-    <ul id="results"></ul>
+<!--TODO: replace with faster search-->
 
-    {{ range .Sections }}
-        <h2 class="section-title">{{ .CurrentSection.Title }}</h2>
-        {{ .CurrentSection.Content }}
-        {{ partial "post_list.html" . }}
-    {{ end }}
-{{ else }}
-    <h2 class="section-title">{{ .CurrentSection.Title }}</h2>
-    {{ partial "post_list.html" . }}
-{{ end }}
+<!-- 검색창 삭제 -->
+<!-- {{ partial "search-form.html" . }}
+    <ul id="results"></ul> -->
 
-{{ partial "footer.html" . }}
+{{ range .Sections }}
+<h2 class="section-title">{{ .CurrentSection.Title }}</h2>
+{{ .CurrentSection.Content }} {{ partial "post_list.html" . }} {{ end }} {{ else
+}}
+<h2 class="section-title">{{ .CurrentSection.Title }}</h2>
+{{ partial "post_list.html" . }} {{ end }} {{ partial "footer.html" . }}

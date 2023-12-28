@@ -12,7 +12,7 @@ tags = ["network", "korean", "cloud", "system_engineering", "CIDR", "NAT", "tunn
 네트워크 시리즈
 
 -   홈 네트워크 구성으로 알아보는 네트워크 기초
--   VM network와 도커 네트워크 (예정)
+-   VM network와 docker network (예정)
 -   VM으로 만드는 쿠버네티스 (예정)
 -   p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정)
 
