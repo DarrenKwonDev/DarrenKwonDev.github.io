@@ -5,9 +5,8 @@
 {{ if .IsHome }}
 <!--TODO: replace with faster search-->
 
-<!-- 검색창 삭제 -->
-<!-- {{ partial "search-form.html" . }}
-    <ul id="results"></ul> -->
+{{ partial "search-form.html" . }}
+<ul id="results"></ul>
 
 {{ range .Sections }}
 <h2 class="section-title">{{ .CurrentSection.Title }}</h2>
