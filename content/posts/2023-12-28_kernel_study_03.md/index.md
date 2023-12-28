@@ -1,5 +1,5 @@
 +++
-title = 'kernel study 03: tracking how load average is calculated'
+title = 'kernel study 03: Understanding the Calculation of Load Average in Linux Kernel: An In-Depth Exploration'
 date = 2023-12-28T04:22:22+09:00
 math = true
 toc = true
