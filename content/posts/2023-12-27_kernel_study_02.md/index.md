@@ -155,7 +155,10 @@ sysctl vm.overcommit_memory # can be 0, 1, 2
     i/o를 대기하고 있는 프로세스를 의미합니다. 프로세스가 D 상태라는 것은, run queue에서 나와 wait queue에서 대기하게 됨을 말합니다.
     만약 i/o 작업이 완료되면 (예를 들어, read/write가 완료되면) 프로세스는 다시 R 상태가 됩니다.
 -   R
-    실제로 cpu를 사용하고 있는 프로세스를 의미합니다.
+    cpu 코어는 한 번에 한 개의 프로세스만 실행할 수 있다.  
+    다만 context switching을 통해서 빠르게 run queue에 담긴 프로세스들을 실행하여 동시에 실행되는 것처럼 보이게될 수 있다.  
+    그리고 run queue에 담긴 프로세스들은 process status가 모두 R로 표기된다.
+    결론적으론 실제로 cpu를 사용하고 있는 프로세스를 의미한다.
 -   S (interruptible sleep)
     sleep 상태입니다. D와 다른 점은,
     i/o가 아닌 단순 sleep이나 콘솔의 입력을 기다리는 경우에는 S 상태가 됩니다.
