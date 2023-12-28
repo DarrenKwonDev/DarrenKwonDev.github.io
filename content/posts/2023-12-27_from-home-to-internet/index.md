@@ -114,9 +114,9 @@ AWS에서 제공하는 NAT 게이트웨이라는 관리형 NAT 디바이스를 
 {{< /box >}}
 
 {{< box info >}}
-NAT bypassing
+NAT bypassing(tunneling)
 
-NAT의 안 쪽에 존재하는 로컬 웹서버를 개발 편의상 외부에 잠깐 노출시키고 싶은 경우 Tunneling의 한 활용 형태로써 ngrok, ngrok 등을 사용할 수 있습니다.
+NAT의 안 쪽에 존재하는 로컬 웹서버를 개발 편의상 외부에 잠깐 노출시키고 싶은 경우 Tunneling의 한 활용 형태로써 ngrok, pgrok 등을 사용할 수 있습니다.
 
 -   https://github.com/anderspitman/awesome-tunneling
 -   https://github.com/pgrok/pgrok
