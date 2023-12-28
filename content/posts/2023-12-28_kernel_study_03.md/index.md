@@ -135,16 +135,10 @@ Once every LOAD_FREQ:
 
 [^2]: decay는 일반적으로 최근에 더욱 가중치를 주고 싶어 과거의 데이터의 가중치를 감소시키는 일종의 수학적 trick입니다.
 
-지수적 감소를 자연상수 `e`를 이용하여 표현하면 다음과 같습니다.
-
-{{< box important >}}
-실제로 자연 상수를 통해 지수적 감소를 표현하지는 않습니다. 정확한 값에 대해서는 후술됩니다!
-{{< /box >}}
-
 $$
 active \space process = R + D \\\
 \space \\\
-avenrun[n] = avenrun[0] \times e^{-\lambda t} + (R + D) \times (1 - e^{-\lambda t})
+avenrun[n] = avenrun[0] \times exp + (R + D) \times (1 - exp)
 $$
 
 결국 단순히 R, D 상태의 task 수만으로 load average를 계산하는 것이 아니라  
@@ -264,6 +258,13 @@ calc_load(unsigned long load, unsigned long exp, unsigned long active)
 
 `newload = load * exp + active * (FIXED_1 - exp);`  
 과거 부하 평균(load)에 지수적 감쇠 계수(exp)를 곱하고, 현재 활성화된 프로세스 수(active)에 1 - exp를 곱하여 두 값을 합산합니다. 여기서 FIXED_1은 고정 소수점 연산을 위한 상수입니다.
+
+```c
+// include/linux/sched/loadavg.h
+
+#define FSHIFT		11		/* nr of bits of precision */
+#define FIXED_1		(1<<FSHIFT)	/* 1.0 as fixed-point */
+```
 
 `if (active >= load) newload += FIXED_1 - 1;`  
 만약 현재 활성화된 프로세스 수가 이전 부하 평균보다 크거나 같은 경우, newload에 추가적인 값(FIXED_1-1)을 더합니다. 이는 부하가 증가하는 상황에서 부하 평균을 보다 빠르게 반응하도록 하는 조정입니다.
