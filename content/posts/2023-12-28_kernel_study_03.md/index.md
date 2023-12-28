@@ -1,5 +1,5 @@
 +++
-title = 'kernel study 03: Understanding the Calculation of Load Average in Linux Kernel: An In-Depth Exploration'
+title = 'kernel study 03: Understanding the Calculation of Load Average in Linux Kernel'
 date = 2023-12-28T04:22:22+09:00
 math = true
 toc = true
@@ -257,17 +257,26 @@ calc_load(unsigned long load, unsigned long exp, unsigned long active)
 -   active: 현재 활성화된 (실행 중 또는 실행 대기 중인) 프로세스의 수입니다.
 
 `newload = load * exp + active * (FIXED_1 - exp);`  
-과거 부하 평균(load)에 지수적 감쇠 계수(exp)를 곱하고, 현재 활성화된 프로세스 수(active)에 1 - exp를 곱하여 두 값을 합산합니다. 여기서 FIXED_1은 고정 소수점 연산을 위한 상수입니다.
+과거 부하 평균(load)에 지수적 감쇠 계수(exp)를 곱하고, 현재 활성화된 프로세스 수(active)에 1 - exp를 곱하여 두 값을 합산합니다. 여기서 FIXED_1은 고정 소수점 연산을 위한 상수입니다.[^3]
 
-```c
-// include/linux/sched/loadavg.h
-
-#define FSHIFT		11		/* nr of bits of precision */
-#define FIXED_1		(1<<FSHIFT)	/* 1.0 as fixed-point */
-```
-
-`if (active >= load) newload += FIXED_1 - 1;`  
+`if (active >= load) newload += FIXED_1 - 1;`
 만약 현재 활성화된 프로세스 수가 이전 부하 평균보다 크거나 같은 경우, newload에 추가적인 값(FIXED_1-1)을 더합니다. 이는 부하가 증가하는 상황에서 부하 평균을 보다 빠르게 반응하도록 하는 조정입니다.
 
-`return newload / FIXED_1;`  
+`return newload / FIXED_1;`
 마지막으로, 계산된 새로운 부하 평균(newload)을 FIXED_1로 나누어 반환합니다. 이는 고정 소수점 연산을 실제 부동 소수점 값으로 변환하는 단계입니다.
+
+[^3]: `FIXED_1이 왜 고정 소수점 연산을 위한 상수인가?`
+
+    고정 소수점은 비트 중 일부를 소수 부분에 할당합니다. 그래서 얼마나 많은 비트를 소수 부분에 할당할 것인지를 결정해야 합니다. 이를 위해 FSHIFT라는 상수를 사용합니다.
+
+    구체적인 값은 다음과 같습니다.
+
+    ```c
+    // include/linux/sched/loadavg.h
+    #define FSHIFT		11		/* nr of bits of precision */
+    #define FIXED_1		(1<<FSHIFT)	/* 1.0 as fixed-point */
+    ```
+
+    FIXED_1는 1.0을 고정 소수점으로 표현한 것입니다. 전체 비트에서 소수에 할당된 부분을 제외하고 left shift를 하여 1.0을 표현합니다.
+
+    따라서, 우리가 부동 소수점으로 5.0을 표현했고 이것은 고정 소수점으로 변환하고 싶다면 5.0 \* FIXED_1을 하면 됩니다. 반대로 고정 소수점을 부동 소수점으로 변환하고 싶다면 5.0 / FIXED_1을 하면 됩니다.
