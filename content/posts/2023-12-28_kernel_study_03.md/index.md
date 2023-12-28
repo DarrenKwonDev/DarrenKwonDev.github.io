@@ -229,10 +229,12 @@ void calc_global_load(void)
 #define EXP_15		2037		/* 1/exp(5sec/15min) */
 ```
 
-active의 경우에는 앞서 살펴본 active process (R + D)의 갯수를 의미하는 것으로 보입니다.
-`active = atomic_long_read(&calc_load_tasks);` 와 같은 함수의 형식으로 미루어보아, atomic_long_read는 atomic read를 지원하기 위한 함수로 보이며 calc_load_tasks가 핵심적인 값으로 보입니다.
+active의 경우에는 앞서 살펴본 active process (R + D)의 갯수를 의미하는 것으로 추측됩니다.
+`active = atomic_long_read(&calc_load_tasks);` 와 같은 함수의 형식으로 미루어보아, atomic_long_read는 atomic read를 지원하기 위한 함수로 보이며 calc_load_tasks가 active task의 갯수를 의미하는 것으로 보입니다.
 
-### conclusion : calc_load
+최종적으로 이러한 데이터를 활용하여 avenrun의 원소를 계산하는 calc_load 함수를 살펴보며 마무리하겠습니다.
+
+## conclusion : calc_load
 
 최종적으로는 다음과 같이 계산되는 것을 확인할 수 있습니다.  
 주석에서 설명하던 exponential decay average를 계산하는 것을 확인할 수 있습니다.
