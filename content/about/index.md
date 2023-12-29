@@ -6,10 +6,9 @@ I'm a programmer with two entrepreneurship experiences.
 Study and develop tech to make a business impact.  
 But also focus on low-level details to avoid pitfalls of leaky abstraction.
 
-## resume
+## cv
 
-english resume (not yet! sorry!)  
-[korean resume](https://github.com/DarrenKwonDev/resume/blob/master/cv.pdf)
+[cv](https://github.com/DarrenKwonDev/resume/blob/master/cv_eng.pdf)
 
 ## social
 
