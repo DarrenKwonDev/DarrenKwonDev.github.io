@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scalability on darrenkwon.dev blog</title>
+    <link>https://darrenkwondev.github.io/tags/scalability/</link>
+    <description>Recent content in scalability on darrenkwon.dev blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Dec 2023 04:22:22 +0900</lastBuildDate><atom:link href="https://darrenkwondev.github.io/tags/scalability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kernel study 03: Inside the Kernel -  How Load Average is Calculated</title>
+      <link>https://darrenkwondev.github.io/posts/2023-12-28_kernel_study_03.md/</link>
+      <pubDate>Thu, 28 Dec 2023 04:22:22 +0900</pubDate>
+      
+      <guid>https://darrenkwondev.github.io/posts/2023-12-28_kernel_study_03.md/</guid>
+      <description>Linux kernel v6.7-rc7 기준으로 작성되었습니다.
+Load average definition /proc/loadavg The first three fields in this file are load average figures giving the number of jobs in the run queue (state R) or waiting for disk I/O (state D) averaged over 1, 5, and 15 minutes. They are the same as the load average numbers given by uptime(1) and other programs. The fourth field consists of two numbers separated by a slash (/).</description>
+    </item>
+    
+  </channel>
+</rss>
