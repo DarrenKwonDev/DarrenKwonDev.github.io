@@ -33,6 +33,7 @@ task
 **top의 개선판들**
 
 -   [htop](https://github.com/hishamhm/htop), [vtop](https://github.com/MrRio/vtop), [gtop](https://github.com/aksakalli/gtop), [gotop](https://github.com/cjbassi/gotop)
+-   저는 개인적으로 htop을 즐겨 쓰는 편입니다. `pstree` 명령어를 별도로 사용할 필요 없이 tree 형태로 프로세스를 확인할 수 있으며 스크롤과 마우스를 지원하기 때문입니다.
 
 ## memory
 
@@ -167,6 +168,15 @@ sysctl vm.overcommit_memory # can be 0, 1, 2
 -   Z
     좀비 프로세스입니다. 종료되었지만, 부모 프로세스에 의해 아직 회수(리소스 해제)되지 않은 프로세스입니다. 부모 프로세스가 자식 프로세스의 exit code(exit(int) 혹은 main return(int))을 요청해야 합니다.
 
+아래는 프로세스가 생성되고 변하는 상태의 변화를 나타낸 그림입니다.
+
+<figure>
+<img src="./ps_state.jpg" width="40%">
+<figcaption>출처 : https://www.informit.com/articles/article.aspx?p=370047</figcaption>
+</figure>
+
+### 좀비 프로세스 제거를 위한 wait syscall
+
 보통 좀비 프로세스를 제거하기 위해서 child process의 종료 시그널을 받아 처리하는 방식을 사용하곤 합니다. 아래는 간략한 예시입니다.
 
 ```c
@@ -225,3 +235,5 @@ renice -n niceness_value -u user
 # Change priority of all processes that belong to a process group:
 renice -n niceness_value --pgrp process_group
 ```
+
+다만, 수작업으로 우선순위를 조정하는 경우는 흔치 않으며, 조정으로 인한 차이가 극적이지 않아 대부분 기본값으로 사용한다.
