@@ -60,7 +60,8 @@ wget -q --show-progress --https-only --timestamping \
   "https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl"
 ```
 
-또한 설치된 서비스들은 systemd unit 파일을 통해 daemonize 됩니다. 예를 들어, kube-apiserver를 설치한 후 daemonize 하기 위해 다음과 같은 unit 파일을 작성합니다.
+또한 설치된 서비스들은 systemd unit 파일로 작성 된 후 systemd에 의해 daemonize 됩니다.  
+예를 들어, kube-apiserver를 설치한 후 daemonize 하기 위해 다음과 같은 unit 파일을 작성합니다.
 
 ```text
 [Unit]
@@ -113,4 +114,4 @@ sudo systemctl start kube-apiserver
 
 솔직히 말하자면 systemd가 pid 1이며 모든 프로세스의 최상위 부모이며 리소스를 유닛 단위로 관리하는 등의 개념은 이해하고 있었습니다. 그러나 유닛 파일을 작성하고 systemd로 실행시킨 경험은 이번이 처음이었습니다.
 
-이후 firecraker로 VM을 구성하여 엔드 유저에게 전달할 필요가 있는 교육 서비스를 구상 중인데, 이를 위해 systemd unit 파일을 작성하고 실행시키는 경험이 유용하게 쓰일 것 같습니다.
+이후 [firecracker](https://firecracker-microvm.github.io/)로 micro VM을 구성하여 엔드 유저에게 전달할 필요가 있는 교육 서비스를 구상 중인데, 이를 위해 systemd unit 파일을 작성하고 실행시키는 경험이 유용하게 쓰일 것 같습니다.
