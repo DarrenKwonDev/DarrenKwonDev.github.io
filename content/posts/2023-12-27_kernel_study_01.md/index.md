@@ -493,7 +493,11 @@ lspci 명령어는 PCI 버스를 통해 연결된 장치들의 정보를 출력�
 ### ip로 network interface 확인
 
 {{< box tip >}}
-ifconfig 보다 ip 사용을 권장함. ifconfig는 유지 보수가 끝났으나 ip는 리눅스 커널과 같이 개발되며 지속적으로 유지보수되고 있음.
+iproute2
+
+net-tools 기반 도구보다 iproute2 기반 도구를 사용하는 것이 좋습니다.  
+여기서도 ifconfig 보다 ip 사용을 권장드립니다.  
+ifconfig는 유지 보수가 끝났으나 ip는 리눅스 커널과 같이 개발되며 지속적으로 유지보수되고 있습니다.  
 {{< /box >}}
 
 ```
