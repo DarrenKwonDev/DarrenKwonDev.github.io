@@ -38,7 +38,7 @@ k8s the hard way?
 
 해당 구축 과정은 글의 초반에 언급한 원본을 참고하시면 됩니다.
 
-## 결국 VM도 container도 OS도 모두 코드다. 구현해보면 더 잘 이해할 수 있다.
+## 결국 OS도 container도 모두 코드다. 구현해보면 더 잘 이해할 수 있다.
 
 본래 문서에 따르면 k8s는 다음과 같은 컴포넌트들로 구성되어 있습니다.
 
@@ -117,3 +117,27 @@ sudo systemctl start kube-apiserver
 솔직히 말하자면 systemd가 pid 1이며 모든 프로세스의 최상위 부모이며 리소스를 유닛 단위로 관리하는 등의 개념은 이해하고 있었습니다. 그러나 유닛 파일을 작성하고 systemd로 실행시킨 경험은 이번이 처음이었습니다.
 
 이후 [firecracker](https://firecracker-microvm.github.io/)로 micro VM을 구성하여 엔드 유저에게 전달할 필요가 있는 교육 서비스를 구상 중인데, 이를 위해 systemd unit 파일을 작성하고 실행시키는 경험이 유용하게 쓰일 것 같습니다.
+
+## [cfssl](https://blog.cloudflare.com/introducing-cfssl)을 활용한 PKI(Public key infrastructure) 구축
+
+쿠버네티스 클러스터 내에서의 각 컴포넌트 간 통신은 상호 TLS(mTLS)를 사용하여 보안화되며 이 과정에서의 인증서 발급 등은 PKI를 통해 이루어집니다.
+
+<details>
+  <summary>구체적으로 어디에 certificate가 활용되는가?</summary>
+  
+-   Client certificates for the kubelet to authenticate to the API server
+-   Kubelet server certificates for the API server to talk to the kubelets
+-   Server certificate for the API server endpoint
+-   Client certificates for administrators of the cluster to authenticate to the API server
+-   Client certificates for the API server to talk to the kubelets
+-   Client certificate for the API server to talk to etcd
+-   Client certificate/kubeconfig for the controller manager to talk to the API server
+-   Client certificate/kubeconfig for the scheduler to talk to the API server.
+-   Client and server certificates for the front-proxy
+
+-   https://kubernetes.io/docs/setup/best-practices/certificates/
+</details>
+
+보통 인증서는 자동으로 구성되곤 하는데[^1234] 여기서는 cfssl을 활용하여 직접 CA의 인증서와 키를 생성하고 이를 기반으로 chain of trust를 구축하는 과정을 진행하게 됩니다. 이 또한 SSL/TLS를 이론적으로만 이해하는 것에 비해 좀 더 hands-on한 경험을 줍니다.
+
+[^1234]: If you install Kubernetes with kubeadm, the certificates that your cluster requires are automatically generated. (https://kubernetes.io/docs/setup/best-practices/certificates/)
