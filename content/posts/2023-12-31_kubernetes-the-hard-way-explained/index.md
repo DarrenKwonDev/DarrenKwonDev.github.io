@@ -106,6 +106,8 @@ RestartSec=5
 WantedBy=multi-user.target
 ```
 
+systemctl은 일종의 윈도우OS의 작업 관리자(task manager) 입니다.
+
 ```text
 sudo systemctl daemon-reload
 sudo systemctl enable kube-apiserver
