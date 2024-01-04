@@ -118,7 +118,7 @@ sudo systemctl start kube-apiserver
 
 이후 [firecracker](https://firecracker-microvm.github.io/)로 micro VM을 구성하여 엔드 유저에게 전달할 필요가 있는 교육 서비스를 구상 중인데, 이를 위해 systemd unit 파일을 작성하고 실행시키는 경험이 유용하게 쓰일 것 같습니다.
 
-## [cfssl](https://blog.cloudflare.com/introducing-cfssl)을 활용한 PKI(Public key infrastructure) 구축
+## cfssl을 활용한 PKI(Public key infrastructure) 구축
 
 쿠버네티스 클러스터 내에서의 각 컴포넌트 간 통신은 상호 TLS(mTLS)를 사용하여 보안화되며 이 과정에서의 인증서 발급 등은 PKI를 통해 이루어집니다.
 
@@ -138,6 +138,6 @@ sudo systemctl start kube-apiserver
 -   https://kubernetes.io/docs/setup/best-practices/certificates/
 </details>
 
-보통 인증서는 자동으로 구성되곤 하는데[^1234] 여기서는 cfssl을 활용하여 직접 CA의 인증서와 키를 생성하고 이를 기반으로 chain of trust를 구축하는 과정을 진행하게 됩니다. 이 또한 SSL/TLS를 이론적으로만 이해하는 것에 비해 좀 더 hands-on한 경험을 줍니다.
+보통 인증서는 자동으로 구성되곤 하는데[^1234] 여기서는 [cfssl](https://blog.cloudflare.com/introducing-cfssl)을 활용하여 직접 CA의 인증서와 키를 생성하고 이를 기반으로 chain of trust를 구축하는 과정을 진행하게 됩니다. 이 또한 SSL/TLS를 이론적으로만 이해하는 것에 비해 좀 더 hands-on한 경험을 줍니다.
 
 [^1234]: If you install Kubernetes with kubeadm, the certificates that your cluster requires are automatically generated. (https://kubernetes.io/docs/setup/best-practices/certificates/)
