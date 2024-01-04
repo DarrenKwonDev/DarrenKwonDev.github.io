@@ -25,7 +25,9 @@ Linux kernel v6.7-rc7 기준으로 작성되었습니다.
 
 </blockquote>
 
-즉, load average는 1분, 5분, 15분 동안 process status가 R(run queue에 적재) 또는 D(waiting for disk I/O)인 job(task)의 수이다.[^1] 그러나 단순히 task의 수 만으로는 시스템 부하를 판단하기는 어렵다. 현재 가동 중인 cpu 코어의 갯수와 고려하여 다른 측면까지도 고려해야 한다. 본 포스트에서는 시스템 부하를 판단하는 방법에 대해서는 다루지 않고, load average가 어떻게 계산되는지에 대해서만 알아보자.
+즉, load average는 1분, 5분, 15분 동안 process status가 R(run queue에 적재) 또는 D(waiting for disk I/O)인 job(task)의 수이다.[^1] 그러나 단순히 task의 수 만으로는 시스템 부하를 판단하기는 어렵다. load average는 process status R, D에 존재하는 프로세스의 수를 가공한 수치이므로 프로세스가 너무 많아서 병목이 일어나고 있다는 것만 알 수 있다. (R의 수요 → cpu 수요, D의 수요 → 디스크 혹은 네트워크 처리 대기 수요)
+
+현재 가동 중인 cpu 코어의 갯수와 고려하여 다른 측면까지도 고려해야 한다. 본 포스트에서는 시스템 부하를 판단하는 방법에 대해서는 다루지 않고, load average가 어떻게 계산되는지에 대해서만 알아보자.
 
 [^1]: process status에 대해서는 [이전 포스트](https://darrenkwondev.github.io/posts/2023-12-27_kernel_study_02.md/#process-status)를 참고하자.
 
