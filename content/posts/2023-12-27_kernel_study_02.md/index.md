@@ -35,6 +35,19 @@ task
 -   [htop](https://github.com/hishamhm/htop), [vtop](https://github.com/MrRio/vtop), [gtop](https://github.com/aksakalli/gtop), [gotop](https://github.com/cjbassi/gotop)
 -   저는 개인적으로 htop을 즐겨 쓰는 편입니다. `pstree` 명령어를 별도로 사용할 필요 없이 tree 형태로 프로세스를 확인할 수 있으며 스크롤과 마우스를 지원하기 때문입니다.
 
+## cpu
+
+### cpu 사용량
+
+-   **us**, user : time running un-niced user processes
+-   **sy**, system : time running kernel processes
+-   ni, nice : time running niced user processes
+-   id, idle : time spent in the kernel idle handler
+-   **wa**, IO-wait : time waiting for I/O completion
+-   hi : time spent servicing hardware interrupts
+-   si : time spent servicing software interrupts
+-   st : time stolen from this vm by the hypervisor
+
 ## memory
 
 ### virtual memory (메모리 가상화)
