@@ -8,7 +8,7 @@ But also focus on low-level details to avoid pitfalls of leaky abstraction.
 
 ## cv
 
-[cv](https://github.com/DarrenKwonDev/resume/blob/master/cv_eng.pdf)
+[korean cv](https://github.com/DarrenKwonDev/resume/blob/master/cv_kor.pdf)
 
 ## social
 
