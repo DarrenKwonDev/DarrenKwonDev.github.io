@@ -10,8 +10,7 @@ tags = ["kubernetes", "k8s", "infra", "system_engineering", "korean", "scalabili
 
 ## trials
 
-회사 운영 자금이 아닌 개인의 지갑에서 나가는 클라우드 비용은 아깝습니다.
-그래서 저는 쿠버네티스를 로컬에서 구동하기 위해 아래와 같은 것들을 시도해보았습니다.
+클라우드 비용은 아깝습니다. 그래서 저는 쿠버네티스를 로컬에서 구동하기 위해 아래와 같은 것들을 시도해보았습니다.
 
 1. **라즈베리파이 클러스터 구축** -> cluster 수준으로 도입하려니 초기 비용이 많이 들기도하고 이리저리 집 안에서 선이 나뒹구며 집이 더러워지는 것을 견디기 힘들어서 포기.
 
@@ -25,7 +24,7 @@ tags = ["kubernetes", "k8s", "infra", "system_engineering", "korean", "scalabili
 [^2]: https://www.man7.org/linux/man-pages/man2/execve.2.html
 [^3]: https://www.vagrantup.com/
 
-결국 간단한 <u>클라우드 기반의 쿠버네티스</u>를 구축하면서 최대한 비용을 절감하기로 결정했습니다.
+결국 <u>클라우드 기반의 쿠버네티스</u>를 구축하면서 최대한 비용을 절감하기로 결정했습니다.
 
 digital ocean, vultr 등 control plane을 무료로 제공하면서 사용을 유도하는 (비교적 중소 규모의) 클라우드 업체가 존재하지만, 사용하지 않기로 하였습니다.  
 DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치 않은 multi cloud 환경을 굳이 만들고 싶진 않았습니다.
