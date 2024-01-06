@@ -8,16 +8,6 @@ draft = false
 tags = ["network", "korean", "cloud", "system_engineering", "CIDR", "NAT", "tunneling"]
 +++
 
-{{< box info >}}
-네트워크 시리즈
-
--   홈 네트워크 구성으로 알아보는 네트워크 기초
--   VM network와 docker network (예정)
--   VM으로 만드는 쿠버네티스 (예정)
--   p2p 통신을 위해 NAT을 뚫는 홀펀칭(hole punching) (예정)
-
-{{< /box >}}
-
 ## private network
 
 보통 서버와 서버의 곧장 통신하는 경우도 있지만 ipv4가 부족한 현 상황에서는 ISP가 하나의 public ip(공인 ip)를 할당하며 해당 router는 내부 private ip를 public ip로 변환하는 일종의 문(gateway) 역할을 수행한다.
