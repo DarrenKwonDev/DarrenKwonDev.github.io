@@ -1,5 +1,5 @@
 +++
-title = 'how to run cheap k8s'
+title = 'gcp에서 저렴하게 교육용 쿠버네티스를 운용하는 방법'
 date = 2024-01-06T18:50:30+09:00
 math = true
 toc = true
@@ -24,7 +24,10 @@ tags = ["kubernetes", "k8s", "infra", "system_engineering", "korean", "scalabili
 [^2]: https://www.man7.org/linux/man-pages/man2/execve.2.html
 [^3]: https://www.vagrantup.com/
 
-결국 간단한 클라우드 기반의 쿠버네티스를 구축하기로 결정했습니다. digital ocean, vultr 등 control plane을 무료로 제공하면서 사용을 유도하는 (비교적 중소 규모의) 클라우드 업체가 존재하지만, 사용하지 않기로 하였습니다. DB 등은 managed service를 이용하게 될텐데 의도치 않은 multi cloud 환경을 굳이 만들고 싶진 않았습니다.
+<u>결국 간단한 클라우드 기반의 쿠버네티스를 구축하기로 결정했습니다.</u>
+
+digital ocean, vultr 등 control plane을 무료로 제공하면서 사용을 유도하는 (비교적 중소 규모의) 클라우드 업체가 존재하지만, 사용하지 않기로 하였습니다.  
+DB 등은 managed service를 이용하게 될텐데 의도치 않은 multi cloud 환경을 굳이 만들고 싶진 않았습니다.
 
 따라서 1계정 당 1개의 control plane을 무료로 제공해주는 gcp 기반으로 구축하기로 결정하였습니다.
 
