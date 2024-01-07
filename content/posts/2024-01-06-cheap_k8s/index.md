@@ -33,4 +33,4 @@ DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치
 
 ## 비용 최소화를 위한 구성
 
-...keep going!
+spot instance를 굴려보면서 실험 중입니다.
