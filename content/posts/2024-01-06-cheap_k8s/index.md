@@ -39,6 +39,7 @@ DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치
 2. 스팟 인스턴스 사용하기
 3. gke를 vpc native로 구성하기
 4. 비용이 조금 들긴 하지만 최소한의 접근성을 위해 NAT은 달아야 함
+5. global LB 대신 regional LB 사용하기
 
 ## billing check
 
