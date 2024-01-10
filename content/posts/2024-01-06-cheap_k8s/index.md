@@ -33,14 +33,38 @@ DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치
 
 ## 비용 최소화를 위한 구성
 
-현재까지 진척도를 공유하자면,
+### 전체적인 클러스터 아키텍처
 
-1. stack driver 등 로깅 및 모니터링 전부 끄기
-2. 스팟 인스턴스 사용하기
-3. gke를 vpc native로 구성하기
-4. 비용이 조금 들긴 하지만 최소한의 접근성을 위해 NAT은 달아야 함
-5. global LB 대신 regional LB 사용하기
+<figure>
+<img src="./gcp_gke.png" alt="gcp k8s cluster">
+<figcaption>출처 : my brain</figcaption>
+</figure>
+
+### 어디서 비용 절감이 이뤄지는가
+
+1. 가장 저렴한 가격을 제공하는 region을 선택합니다.
+    - region 마다 vm 가격이 다릅니다. GCP에서는 대부분의 인스턴스가 `us-cental1`이 저렴한 것으로 보입니다.[^4]
+2. spot vm을 사용합니다.
+    - 가용성(availablity)이 떨어지는 것은 단점이지만, 비용을 절감할 수 있습니다.
+    - spot vm shutdown에 대비하여 vm에 의존적인 값이 아닌 gloo를 통해 트래픽을 전달하도록 합니다.
+3. stack driver 를 사용하지 않습니다.[^5]
+    - 프로덕션에서는 권장되지 않습니다
+
+[^4]: https://www.instance-pricing.com/provider=gcp/cheapest/
+[^5]: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#logging_service
 
 ## billing check
 
 실제 운용을 해보고 얼마나 비용이 나오는지 확인해보았습니다.
+
+1일 기준 금액
+
+(확인 중)
+
+7일 기준 금액
+
+(확인 중)
+
+30일 기준 금액
+
+(확인 중)

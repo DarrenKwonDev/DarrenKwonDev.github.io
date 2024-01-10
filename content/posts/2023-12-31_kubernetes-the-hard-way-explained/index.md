@@ -21,6 +21,7 @@ k8s the hard way?
 
 <figure >
 <img src="./arch.png" width="55%">
+<figcaption>출처 : my brain</figcaption>
 </figure>
 
 ### 클러스터 구축 순서
