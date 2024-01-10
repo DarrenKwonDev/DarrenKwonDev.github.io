@@ -8,6 +8,13 @@ draft = false
 tags = ["kubernetes", "k8s", "infra", "system_engineering", "korean", "scalability", "gcp", "terraform"]
 +++
 
+{{< box tip >}}
+**NOT FOR PRODUCTION**
+
+교육용으로 쿠버네티스를 사용하거나, 간단한 토이 프로젝트를 registry로 밀어 넣고 서빙하는 용도로만 사용할 목적입니다.  
+실제 프로덕션에서 사용하기에는 적합하지 않습니다.  
+{{< /box >}}
+
 ## trials
 
 클라우드 비용은 아깝습니다. 그래서 저는 쿠버네티스를 로컬에서 구동하기 위해 아래와 같은 것들을 시도해보았습니다.
