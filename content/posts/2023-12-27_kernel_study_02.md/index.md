@@ -1,5 +1,5 @@
 +++
-title = 'kernel study 02: top을 통해 확인할 수 있는 프로세스 정보들'
+title = 'top을 통해 확인할 수 있는 프로세스 정보들'
 date = 2023-12-28T02:50:13+09:00
 math = true
 toc = true
