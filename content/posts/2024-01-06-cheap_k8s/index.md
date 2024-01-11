@@ -31,12 +31,12 @@ tags = ["kubernetes", "k8s", "infra", "system_engineering", "korean", "scalabili
 [^2]: https://www.man7.org/linux/man-pages/man2/execve.2.html
 [^3]: https://www.vagrantup.com/
 
-결국 <u>클라우드 기반의 쿠버네티스</u>를 구축하면서 최대한 비용을 절감하기로 결정했습니다.
+결국 클라우드 기반의 쿠버네티스를 구축하면서 최대한 비용을 절감하기로 결정했습니다.
 
 digital ocean, vultr 등 control plane을 무료로 제공하면서 사용을 유도하는 (비교적 중소 규모의) 클라우드 업체가 존재하지만, 사용하지 않기로 하였습니다.  
 DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치 않은 multi cloud 환경을 굳이 만들고 싶진 않았습니다.
 
-따라서 1계정 당 1개의 control plane을 무료로 제공해주는 gcp 기반으로 구축하기로 결정하였습니다.
+따라서 1계정 당 1개의 control plane을 무료로 제공해주는 <u>gcp 기반</u>으로 구축하기로 결정하였습니다.
 
 ## 비용 최소화를 위한 구성
 
@@ -71,7 +71,7 @@ disclaimer
 사용량이 늘어나면서 비용이 선형적으로 증가하는 서비스도 존재합니다만 본 문서는 개인이 사용 하는 교육용이므로 고려하지 않겠습니다.
 {{< /box >}}
 
--   1일 기준 금액 : 1000원 미만 (954원)
+-   1일 기준 금액 : 1000원 남짓
 
 <img src="./first_day.png" alt="first day" />
 
