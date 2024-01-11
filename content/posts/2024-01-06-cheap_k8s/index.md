@@ -51,6 +51,7 @@ DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치
 
 1. 가장 저렴한 가격을 제공하는 region을 선택합니다.
     - region 마다 vm 가격이 다릅니다. GCP에서는 대부분의 인스턴스가 `us-cental1`이 저렴한 것으로 보입니다.[^4]
+    - 위 스펙은 e2-standard-2 기준입니다.
 2. spot vm을 사용합니다.
     - 가용성(availablity)이 떨어지는 것은 단점이지만, 비용을 절감할 수 있습니다.
     - spot vm shutdown에 대비하여 vm에 의존적인 값이 아닌 gloo를 통해 트래픽을 전달하도록 합니다.
@@ -77,14 +78,8 @@ disclaimer
 사용량이 늘어나면서 비용이 선형적으로 증가하는 서비스도 존재합니다만 본 문서는 개인이 사용 하는 교육용이므로 고려하지 않겠습니다.
 {{< /box >}}
 
--   1일 기준 금액 : 1000원 남짓
+-   e2-standard-2, 3대
+
+e2-standard-2, 3대가 하루에 3000원 정도로 잡힙니다.
 
 <img src="./first_day.png" alt="first day" />
-
-7일 기준 금액
-
-(확인 중)
-
-30일 기준 금액
-
-(확인 중)
