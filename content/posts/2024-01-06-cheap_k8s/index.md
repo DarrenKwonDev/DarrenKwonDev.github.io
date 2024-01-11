@@ -61,6 +61,12 @@ DB 등은 cloud locked-in된 managed service를 이용하게 될텐데 의도치
 [^4]: https://www.instance-pricing.com/provider=gcp/cheapest/
 [^5]: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#logging_service
 
+## 구축 방법
+
+직접 다 설명하기에는 양이 많으므로 그 자체가 문서인 terraform을 첨부합니다.
+
+https://github.com/DarrenKwonDev/drkube
+
 ## billing check
 
 실제 운용을 해보고 얼마나 비용이 나오는지 확인해보았습니다.
